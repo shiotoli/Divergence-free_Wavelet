@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     21930,        565]
-NotebookOptionsPosition[     21403,        543]
-NotebookOutlinePosition[     21745,        558]
-CellTagsIndexPosition[     21702,        555]
+NotebookDataLength[     23056,        597]
+NotebookOptionsPosition[     22485,        574]
+NotebookOutlinePosition[     22830,        589]
+CellTagsIndexPosition[     22787,        586]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -47,6 +47,12 @@ Cell[BoxData[{
     RowBox[{"F", "[", "x", "]"}], "-", 
     RowBox[{"F", "[", 
      RowBox[{"x", "-", "1"}], "]"}]}], ",", "x"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"WaveletFilterCoefficients", "[", 
+  RowBox[{
+   RowBox[{"BiorthogonalSplineWavelet", "[", 
+    RowBox[{"3", ",", "1"}], "]"}], ",", "\"\<DualHighpass\>\"", ",", 
+   RowBox[{"WorkingPrecision", "\[Rule]", "\[Infinity]"}]}], 
   "]"}], "\[IndentingNewLine]", 
  RowBox[{"Plot", "[", 
   RowBox[{
@@ -118,7 +124,7 @@ Cell[BoxData[{
   "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.6234055642396193`*^9, 3.6234055683218527`*^9}, {
   3.6234056202518234`*^9, 3.623405753219428*^9}, {3.623405871226178*^9, 
-  3.623405907287241*^9}}],
+  3.623405907287241*^9}, {3.6234063974582767`*^9, 3.623406442568857*^9}}],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -175,7 +181,8 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellChangeTimes->{{3.623405670386691*^9, 3.6234057546455097`*^9}, {
-  3.623405896377617*^9, 3.623405907637261*^9}}],
+  3.623405896377617*^9, 3.623405907637261*^9}, {3.623406398698348*^9, 
+  3.6234064430448847`*^9}}],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -242,7 +249,30 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellChangeTimes->{{3.623405670386691*^9, 3.6234057546455097`*^9}, {
-  3.623405896377617*^9, 3.6234059076832633`*^9}}],
+  3.623405896377617*^9, 3.623405907637261*^9}, {3.623406398698348*^9, 
+  3.623406443090887*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     FractionBox["1", "4"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     FractionBox["3", "4"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", 
+      FractionBox["3", "4"]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", 
+      FractionBox["1", "4"]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.623405670386691*^9, 3.6234057546455097`*^9}, {
+  3.623405896377617*^9, 3.623405907637261*^9}, {3.623406398698348*^9, 
+  3.6234064430938873`*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {}, 
@@ -405,7 +435,8 @@ gn9IRtG65g+CX/vc99P//wg+APDhtpc=
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{{3.623405670386691*^9, 3.6234057546455097`*^9}, {
-  3.623405896377617*^9, 3.623405907762268*^9}}]
+  3.623405896377617*^9, 3.623405907637261*^9}, {3.623406398698348*^9, 
+  3.62340644314389*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -542,7 +573,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{767, 873},
-WindowMargins->{{Automatic, 395}, {24, Automatic}},
+WindowMargins->{{Automatic, -763}, {-845, Automatic}},
 FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
 StyleDefinitions->"Default.nb"
 ]
@@ -558,18 +589,18 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 3384, 98, 209, "Input"],
-Cell[3967, 122, 1891, 55, 58, "Output"],
-Cell[5861, 179, 2233, 65, 126, "Output"],
-Cell[8097, 246, 8962, 161, 243, "Output"]
+Cell[580, 22, 3699, 104, 249, "Input"],
+Cell[4282, 128, 1942, 56, 58, "Output"],
+Cell[6227, 186, 2280, 66, 158, "Output"],
+Cell[8510, 254, 618, 20, 46, "Output"],
+Cell[9131, 276, 9010, 162, 243, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17096, 412, 2132, 62, 126, InheritFromParent],
-Cell[19231, 476, 2156, 64, 126, "Output"]
+Cell[18178, 443, 2132, 62, 126, InheritFromParent],
+Cell[20313, 507, 2156, 64, 126, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-
