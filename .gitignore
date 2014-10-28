@@ -6,4 +6,5 @@
 *.manifest
 *.cache
 *.idb
+*.opensdf
 .gitignore
