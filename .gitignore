@@ -1,0 +1,8 @@
+*.opensdf
+*.ipch
+*.tlog
+*.pdb
+*.idb
+*.cache
+*.sdf
+*.suo
