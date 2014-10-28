@@ -1,0 +1,7 @@
+u = load('uelocity.txt');
+v = load('velocity.txt');
+lscdf = liftwave('cdf2.2');
+displs(lscdf);
+[LoD,HiD,LoR,HiR] = ls2filt(lscdf);
+bswfun(LoD,HiD,LoR,HiR,'plot');
+[C,S] = wavedec2(u,4,'cdf2.2');
