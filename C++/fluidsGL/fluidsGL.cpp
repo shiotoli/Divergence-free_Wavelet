@@ -136,6 +136,8 @@ extern "C" void diffuseProject(cData *vx, cData *vy, int dx, int dy, float dt, f
 extern "C" void updateVelocity(cData *v, float *vx, float *vy, int dx, int pdx, int dy);
 extern "C" void advectParticles(GLuint vbo, cData *v, int dx, int dy, float dt);
 
+FILE *vileoutput,*uileoutput;
+int framecount=0;
 
 void simulateFluids(void)
 {
@@ -179,7 +181,6 @@ void display(void)
                cudaMemcpyDeviceToHost);
 	int stride=20;
 	float tmpx,tmpy,dx,dy;
-	
 	for(int i=0;i<DIM;i+=stride){
 		for(int j=0;j<DIM;j+=stride){
 			glBegin(GL_LINE_STRIP);
@@ -192,10 +193,8 @@ void display(void)
 			tmpy=(float)(i+dy)/DIM;
 			glVertex2f(tmpx,tmpy);
 			glEnd();
-			
 		}
 	}
-	
 	glFlush();
 	/*
 	glLineWidth(1);
@@ -362,7 +361,19 @@ void keyboard(unsigned char key, int x, int y)
 
             getLastCudaError("cudaGraphicsGLRegisterBuffer failed");
             break;
-
+		case 'e':
+			fprintf(uileoutput,"%d\n",framecount);
+			fprintf(vileoutput,"%d\n",framecount++);
+			
+			for(int i=0;i<DIM;i+=1){
+				for(int j=0;j<DIM;j+=1){
+					fprintf(uileoutput,"%f ",gvfield[i*DIM+j].x);
+					fprintf(vileoutput,"%f ",gvfield[i*DIM+j].y);
+				}
+				fprintf(uileoutput,"\n");
+				fprintf(vileoutput,"\n");
+			}
+			
         default:
             break;
     }
@@ -590,6 +601,8 @@ int main(int argc, char **argv)
 #else
         glutCloseFunc(cleanup);
 #endif
+		vileoutput = fopen("velocity.txt","w+");
+		uileoutput = fopen("uelocity.txt","w+");
         glutMainLoop();
     }
 
@@ -604,7 +617,8 @@ int main(int argc, char **argv)
     {
         exit(EXIT_SUCCESS);
     }
-
+	fclose(vileoutput);
+	fclose(uileoutput);
     return 0;
 
 EXTERR:
