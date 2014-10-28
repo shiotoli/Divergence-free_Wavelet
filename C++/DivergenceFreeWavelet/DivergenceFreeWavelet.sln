@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DivergenceFreeWavelet", "DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj", "{2C2540BB-9CED-4254-961F-1F7399EAAE5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C2540BB-9CED-4254-961F-1F7399EAAE5E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2C2540BB-9CED-4254-961F-1F7399EAAE5E}.Debug|Win32.Build.0 = Debug|Win32
+		{2C2540BB-9CED-4254-961F-1F7399EAAE5E}.Release|Win32.ActiveCfg = Release|Win32
+		{2C2540BB-9CED-4254-961F-1F7399EAAE5E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
