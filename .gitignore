@@ -1,10 +1,9 @@
+*.opensdf
+*.ipch
+*.tlog
+*.pdb
+*.idb
+*.cache
 *.sdf
 *.suo
-*.ipch
-*.pdb
-*.tlog
-*.manifest
-*.cache
-*.idb
-*.opensdf
-.gitignore
+
