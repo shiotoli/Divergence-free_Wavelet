@@ -1,0 +1,8 @@
+*.sdf
+*.suo
+*.ipch
+*.pdb
+*.tlog
+*.manifest
+*.cache
+*.idb
