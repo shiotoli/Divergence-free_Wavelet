@@ -14,4 +14,31 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dfwavelet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dfwavelet_impl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dfwavelet_kernels.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dfwavelet.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dfwavelet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dfwavelet_main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\dfwavelet_kernels.cu">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>
