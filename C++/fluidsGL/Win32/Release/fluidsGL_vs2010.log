@@ -1,0 +1,36 @@
+﻿生成启动时间为 2014/10/28 15:57:42。
+     1>项目“E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\fluidsGL_vs2010.vcxproj”在节点 2 上(build 个目标)。
+     1>PrepareForBuild:
+         正在创建目录“./bin/win32/Release/”。
+       InitializeBuildStatus:
+         正在创建“Win32/Release/fluidsGL.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       AddCudaCompileDeps:
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DWIN32 /D_MBCS /D_MBCS /I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" /I./ /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\/include" /I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /I. /FIcuda_runtime.h /c E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\fluidsGL_kernels.cu 
+       CudaBuild:
+         Compiling CUDA source file fluidsGL_kernels.cu...
+         cmd.exe /C "C:\Users\Jyt\AppData\Local\Temp\tmp99f5a3802a3b4cbeb00eb333d784a72c.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin\nvcc.exe" -gencode=arch=compute_11,code=\"sm_11,compute_11\" -gencode=arch=compute_20,code=\"sm_20,compute_20\" -gencode=arch=compute_30,code=\"sm_30,compute_30\" -gencode=arch=compute_35,code=\"sm_35,compute_35\" -gencode=arch=compute_37,code=\"sm_37,compute_37\" -gencode=arch=compute_50,code=\"sm_50,compute_50\" --use-local-env --cl-version 2010 -ccbin "d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin"  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" -I./ -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\/include" -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile -cudart static -Xcompiler "/wd 4819"     -DWIN32 -DWIN32 -D_MBCS -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MT  " -o Win32/Release/fluidsGL_kernels.cu.obj "E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\fluidsGL_kernels.cu"
+         
+         E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin\nvcc.exe" -gencode=arch=compute_11,code=\"sm_11,compute_11\" -gencode=arch=compute_20,code=\"sm_20,compute_20\" -gencode=arch=compute_30,code=\"sm_30,compute_30\" -gencode=arch=compute_35,code=\"sm_35,compute_35\" -gencode=arch=compute_37,code=\"sm_37,compute_37\" -gencode=arch=compute_50,code=\"sm_50,compute_50\" --use-local-env --cl-version 2010 -ccbin "d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin"  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" -I./ -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\/include" -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile -cudart static -Xcompiler "/wd 4819"     -DWIN32 -DWIN32 -D_MBCS -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MT  " -o Win32/Release/fluidsGL_kernels.cu.obj "E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\fluidsGL_kernels.cu" 
+     1>CUDACOMPILE : nvcc warning : The 'compute_11', 'compute_12', 'compute_13', 'sm_11', 'sm_12', and 'sm_13' architectures are deprecated, and may be removed in a future release.
+         fluidsGL_kernels.cu
+       ClCompile:
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I./ /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\/include" /I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D _MBCS /D _MBCS /Gm- /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Win32/Release/" /Fd"Win32/Release/vc100.pdb" /Gd /TP /analyze- /errorReport:prompt fluidsGL.cpp
+         fluidsGL.cpp
+       Link:
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"./bin/win32/Release//fluidsGL.exe" /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\Win32" /LIBPATH:"C:/ProgramData/NVIDIA Corporation/CUDA Samples/v6.5/common/lib/Win32" glew32.lib cufft.lib cudart_static.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32/Release/fluidsGL.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\bin\win32\Release\fluidsGL.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"./bin/win32/Release/fluidsGL.lib" /MACHINE:X86 Win32/Release/fluidsGL_kernels.cu.obj
+         Win32/Release/fluidsGL.obj
+            正在创建库 ./bin/win32/Release/fluidsGL.lib 和对象 ./bin/win32/Release/fluidsGL.exp
+         正在生成代码
+         已完成代码的生成
+         fluidsGL_vs2010.vcxproj -> E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\./bin/win32/Release/fluidsGL.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"./bin/win32/Release//fluidsGL.exe;#1" /manifest Win32/Release/fluidsGL.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Win32/Release/fluidsGL.unsuccessfulbuild”。
+         正在对“Win32/Release/fluidsGL.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\borrow\github\Divergence-free_Wavelet\C++\fluidsGL\fluidsGL_vs2010.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:25.08
