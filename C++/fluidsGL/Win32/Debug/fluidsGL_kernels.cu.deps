@@ -248,6 +248,8 @@ c:\program files\nvidia gpu computing toolkit\cuda\v6.5\include\cuComplex.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
 c:\program files\nvidia gpu computing toolkit\cuda\v6.5\include\vector_types.h
 c:\program files\nvidia gpu computing toolkit\cuda\v6.5\include\driver_types.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc\helper_cuda.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc\helper_string.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\fstream
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
@@ -324,8 +326,10 @@ d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc\GL/glew.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\GL/glu.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\GL/gl.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v6.5\common\inc\GL/freeglut.h
 c:\programdata\nvidia corporation\cuda samples\v6.5\common\inc\gl\freeglut_std.h
 C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\windows.h
 C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\sdkddkver.h
@@ -473,5 +477,5 @@ C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\mmsystem.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\GL/gl.h
 d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\GL/glu.h
 c:\programdata\nvidia corporation\cuda samples\v6.5\common\inc\gl\freeglut_ext.h
-c:\programdata\nvidia corporation\cuda samples\v6.5\5_simulations\fluidsgl\fluidsGL_kernels.cuh
-c:\programdata\nvidia corporation\cuda samples\v6.5\5_simulations\fluidsgl\defines.h
+e:\borrow\github\divergence-free_wavelet\c++\fluidsgl\fluidsGL_kernels.cuh
+e:\borrow\github\divergence-free_wavelet\c++\fluidsgl\defines.h

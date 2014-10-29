@@ -373,7 +373,8 @@ void keyboard(unsigned char key, int x, int y)
 				fprintf(uileoutput,"\n");
 				fprintf(vileoutput,"\n");
 			}
-			
+			fflush(uileoutput);
+			fflush(vileoutput);
         default:
             break;
     }
@@ -601,8 +602,8 @@ int main(int argc, char **argv)
 #else
         glutCloseFunc(cleanup);
 #endif
-		vileoutput = fopen("velocity.txt","w+");
-		uileoutput = fopen("uelocity.txt","w+");
+		vileoutput = fopen("e:\\borrow\\velocity.txt","w+");
+		uileoutput = fopen("e:\\borrow\\uelocity.txt","w+");
         glutMainLoop();
     }
 
