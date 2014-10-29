@@ -1,14 +1,15 @@
 u = load('uelocity.txt');
 v = load('velocity.txt');
+a = divergence(u,v);
 [Ld0,Hd0] = wfilters('rbio2.2','d');
 Hd0 = - Hd0;
-[Ld1,Hd1] = wfilters('rbio3.1','d');
+[Ld1,Hd1] = wfilters('bior3.1','d');
 Hd1 = - Hd1;
-
+waverec2
 % bswfun(Ld0,Hd0,Ld1,Hd1,'plot');
 % dwt2(u,'rbio2.2');
-level = 8;
-[C,S,baseu,basev] = wavedec2_divergence(u,v,8,Ld0,Hd0,Ld1,Hd1);
+level = 7;
+[C,S,baseu,basev,C1,S1] = wavedec2_divergence(u,v,level,Ld0,Hd0,Ld1,Hd1);
 for i = 1:level
 %     d = zeros(6,size(C{i},4),size(C{i},4));
     d0 = zeros(size(C{i}.data,4),size(C{i}.data,5));
@@ -19,6 +20,7 @@ for i = 1:level
     d3(:,:)=C{i}.data(1,2,1,:,:)+C{i}.data(2,2,1,:,:)/4.0-circshift(C{i}.data(2,2,1,:,:),[0 1])/4.0;
     d4(:,:)=C{i}.data(2,2,1,:,:)+C{i}.data(1,1,2,:,:)/4.0-circshift(C{i}.data(1,1,2,:,:),[1 0])/4.0;
     d5(:,:)=C{i}.data(1,2,2,:,:)/2+C{i}.data(2,2,2,:,:)/2;
+    sum(sum(abs(divergence(d2,d5))))
     path = sprintf('../mathematica/u_%d_HL.txt',i);
     save(path,'d0', '-ascii', '-double');
     path = sprintf('../mathematica/u_%d_LH.txt',i);
@@ -35,5 +37,6 @@ end
 % plot(C);
 % bswfun(LoD,-HiD,LoR,-HiR,'plot');
 % [C,S] = wavedec2(u,1,'bio2.2');
+b=divergence(baseu,basev);
 save('../mathematica/baseu.txt','baseu', '-ascii', '-double');
 save('../mathematica/basev.txt','basev', '-ascii', '-double');
