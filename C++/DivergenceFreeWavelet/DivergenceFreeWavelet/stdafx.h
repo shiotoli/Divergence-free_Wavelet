@@ -5,3 +5,26 @@
 #include <vector>
 #include <map>
 using namespace std;
+#define DIM				2
+#define GRID_SIZE		512
+
+inline void release1D(double* tmp)
+{
+	delete[] tmp;
+}
+inline void release2D(double** tmp,int size)
+{
+	for (int i = 0;i<size;i++)
+		delete[] tmp[i];
+	delete[] tmp;
+}
+inline void new1D(double* tmp,int size)
+{
+	tmp = new double[size]
+}
+inline void new2D(double** tmp,int row, int col)
+{
+	tmp = new double*[row];
+	for (int i = 0;i<row;i++)
+		tmp[i] = new double[col];
+}

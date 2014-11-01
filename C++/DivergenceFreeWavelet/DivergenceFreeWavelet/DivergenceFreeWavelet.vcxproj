@@ -64,6 +64,7 @@
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="DivergenceFreeWavelet2D.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Velocity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp" />
