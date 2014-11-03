@@ -1,17 +1,34 @@
-﻿生成启动时间为 2014/10/31 20:21:39。
-     1>项目“D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”在节点 2 上(build 个目标)。
-     1>PrepareForBuild:
-         正在创建目录“D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\”。
-       InitializeBuildStatus:
-         正在对“Debug\DivergenceFreeWavelet.unsuccessfulbuild”执行 Touch 任务。
+﻿生成启动时间为 11/4/2014 12:35:57 AM。
+     1>项目“D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Debug\DivergenceFreeWavelet.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt BaseWavelet.cpp
-         BaseWavelet.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DFdwt2D.cpp
+         DFdwt2D.cpp
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\stdafx.h(34): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : 参见“fopen”的声明
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\dfdwt2d.cpp(5): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : 参见“fopen”的声明
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\dfdwt2d.cpp(8): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : 参见“fscanf”的声明
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\dfdwt2d.cpp(10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : 参见“fopen”的声明
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\dfdwt2d.cpp(13): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : 参见“fscanf”的声明
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\DivergenceFreeWavelet.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.lib" /MACHINE:X86 Debug\BaseWavelet.obj
-     1>LINK : fatal error LNK1561: 必须定义入口点
-     1>已完成生成项目“D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”(build 个目标)的操作 - 失败。
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\DivergenceFreeWavelet.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.lib" /MACHINE:X86 Debug\BaseWavelet.obj
+         Debug\DFdwt2D.obj
+         Debug\Filter.obj
+         Debug\main.obj
+         LINK : 没有找到 D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.exe 或上一个增量链接没有生成它；正在执行完全链接
+         DivergenceFreeWavelet.vcxproj -> D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Debug\DivergenceFreeWavelet.exe;#1" /manifest Debug\DivergenceFreeWavelet.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Debug\DivergenceFreeWavelet.unsuccessfulbuild”。
+         正在对“Debug\DivergenceFreeWavelet.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”(build 个目标)的操作。
 
-生成失败。
+生成成功。
 
-已用时间 00:00:02.87
+已用时间 00:00:04.26

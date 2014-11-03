@@ -72,6 +72,7 @@
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp" />
     <ClCompile Include="DFdwt2D.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
