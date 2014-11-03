@@ -61,13 +61,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BSplineWavelet1D.h" />
+    <ClInclude Include="DFdwt2D.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="DivergenceFreeWavelet2D.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Velocity.h" />
+    <ClInclude Include="Wavelet2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp" />
+    <ClCompile Include="DFdwt2D.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,6 +15,7 @@ void DFdwt2D::loadData(string u_path,string v_path,string filterx_path,string fi
 	filter0.loadFilter(filterx_path);
 	filter1.loadFilter(filtery_path);
 }
+
 void DFdwt2D::fwt2d_uv(double** u,double** v,double** ull,double** uhl,double** ulh,double** uhh,double** vll,double** vlh,double** vhl,double** vhh,int LLsize)
 {
 	double** ulltmp,**ulhtmp,**uhltmp,**uhhtmp,**vlltmp,**vhltmp,**vlhtmp,**vhhtmp;
@@ -36,19 +37,62 @@ void DFdwt2D::fwt2d_uv(double** u,double** v,double** ull,double** uhl,double** 
 			//Psi(0,1)
 			uhl[i][j] = uhltmp[i][j];
 			if (j != 0)
-				vhl[i][j] = vhltmp[i][j]+0.25*uhl[i][j]-0.25*uhl[i][j-1];
+				vhl[i][j] = vhltmp[i][j]+0.25*uhltmp[i][j]-0.25*uhltmp[i][j-1];
 			else
-				vhl[i][j] = vhltmp[i][j]+0.25*uhl[i][j]-0.25*(scene == LOOP?uhl[i][LLsize/2-1]:0);
+				vhl[i][j] = vhltmp[i][j]+0.25*uhltmp[i][j]-0.25*(scene == LOOP?uhltmp[i][LLsize/2-1]:0);
 			//Psi(1,0)
 			ulh[i][j] = vlhtmp[i][j];
 			if (i!=0)
 				vlh[i][j] = ulhtmp[i][j]+0.25*vlhtmp[i][j]-0.25*vlhtmp[i-1][j];
 			else
-				vlh[i][j] = ulhtmp[i][j]+0.25*vlhtmp[i][j]-0.25*(scene == LOOP?uhl[LLsize/2-1][j]:0);
+				vlh[i][j] = ulhtmp[i][j]+0.25*vlhtmp[i][j]-0.25*(scene == LOOP?uhltmp[LLsize/2-1][j]:0);
 			//Psi(1,1)
 			uhh[i][j] = 0.5*uhhtmp[i][j]-0.5*vhhtmp[i][j];
 			vhh[i][j] = 0.5*uhhtmp[i][j]+0.5*vhhtmp[i][j];
 		}
+		release2D(ulltmp,LLsize/2);
+		release2D(vlltmp,LLsize/2);
+		release2D(uhltmp,LLsize/2);
+		release2D(vhltmp,LLsize/2);
+		release2D(ulhtmp,LLsize/2);
+		release2D(vlhtmp,LLsize/2);
+		release2D(uhhtmp,LLsize/2);
+		release2D(vhhtmp,LLsize/2);
+}
+void DFdwt2D::ifwt2d_uv(double** ull,double** uhl,double** ulh,double** uhh,double** vll,double** vlh,double** vhl,double** vhh,double** u,double** v,int LLsize)
+{
+	double** ulltmp,**ulhtmp,**uhltmp,**uhhtmp,**vlltmp,**vhltmp,**vlhtmp,**vhhtmp;
+	new2D(ull,LLsize,LLsize);
+	new2D(vll,LLsize,LLsize);
+	new2D(uhl,LLsize,LLsize);
+	new2D(vhl,LLsize,LLsize);
+	new2D(ulh,LLsize,LLsize);
+	new2D(vlh,LLsize,LLsize);
+	new2D(uhh,LLsize,LLsize);
+	new2D(vhh,LLsize,LLsize);
+	for (int i = 0;i<LLsize;i++)
+		for (int j = 0;j<LLsize;j++)
+		{
+			ulltmp[i][j] = ull[i][j];
+			vlltmp[i][j] = vll[i][j];
+			//Psi(0,1)
+			uhltmp[i][j] = uhl[i][j];
+			if (j != 0)
+				vhl[i][j] = vhltmp[i][j]+0.25*uhl[i][j]-0.25*uhl[i][j-1];
+			else
+				vhl[i][j] = vhltmp[i][j]+0.25*uhl[i][j]-0.25*(scene == LOOP?uhl[i][LLsize/2-1]:0);
+			//Psi(1,0)
+			ulhtmp[i][j] = vlh[i][j];
+			if (i!=0)
+				vlh[i][j] = ulhtmp[i][j]+0.25*vlhtmp[i][j]-0.25*vlhtmp[i-1][j];
+			else
+				vlh[i][j] = ulhtmp[i][j]+0.25*vlhtmp[i][j]-0.25*(scene == LOOP?uhl[LLsize/2-1][j]:0);
+			//Psi(1,1)
+			uhhtmp[i][j] = uhh[i][j]+vhh[i][j];
+			vhhtmp[i][j] = vhh[i][j]-uhh[i][j];
+		}
+	fwt2d(u,ulltmp,uhltmp,ulhtmp,uhhtmp,filter1.lod,filter0.lod,filter1.hid,filter0.hid,LLsize);
+	fwt2d(v,vlltmp,vhltmp,vlhtmp,vhhtmp,filter0.lod,filter1.lod,filter0.hid,filter1.hid,LLsize);
 		release2D(ulltmp,LLsize/2);
 		release2D(vlltmp,LLsize/2);
 		release2D(uhltmp,LLsize/2);

@@ -30,9 +30,24 @@
     <ClInclude Include="Velocity.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DFdwt2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Wavelet2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DFdwt2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
