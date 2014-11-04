@@ -37,14 +37,28 @@ void DFdwt2D::wavedec2d(int level)
 		LLsize/=2;
 		lastu = ull;
 		lastv = vll;
+		if (i==level-1)
+		{
+			//mul(ull,vll,LLsize,LLsize,0);
+			set_field(ull,vll,LLsize,LLsize,1.0,-1.0);
+		}
 	}
 }
 void DFdwt2D::waverec2d(int level)
 {
 	double** lastu,**lastv;
-	ifwt2d_uv(waveletCoeULL[level],waveletCoeUHL[level],waveletCoeULH[level],waveletCoeUHH[level],waveletCoeVLL[level],waveletCoeVLH[level],waveletCoeVHL[level],waveletCoeVHH[level],lastu,lastv,waveletCoeSize[level]);
-	print2d("lastu.txt",lastu,waveletCoeSize[level]*2,waveletCoeSize[level]*2);
-	print2d("lastv.txt",lastv,waveletCoeSize[level]*2,waveletCoeSize[level]*2);
+	for (int i = level;i>=0;i--)
+	{
+		ifwt2d_uv(waveletCoeULL[i],waveletCoeUHL[i],waveletCoeULH[i],waveletCoeUHH[i],waveletCoeVLL[i],waveletCoeVLH[i],waveletCoeVHL[i],waveletCoeVHH[i],lastu,lastv,waveletCoeSize[i]);
+		recWaveletCoeULL.push_back(lastu);
+		recWaveletCoeVLL.push_back(lastv);
+		recWaveletCoeSize.push_back(waveletCoeSize[i]*2);
+	}
+	cout<<calcDivergence_sum(lastu,lastv,DIM,DIM)<<' '<<calcDivergence_biggest(lastu,lastv,DIM,DIM)<<endl;
+	system("pause");
+		
+	//print2d("lastu.txt",lastu,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
+	//print2d("lastv.txt",lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
 	//print2d("realu.txt",waveletCoeULL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
 	//print2d("realv.txt",waveletCoeVLL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
 }
@@ -152,13 +166,17 @@ void DFdwt2D::ifwt2d_uv(double** ull,double** uhl,double** ulh,double** uhh,doub
 void DFdwt2D::fwt2d(double** LL,double** &ll,double** &hl,double** &lh,double** &hh,SubFilter lodx,SubFilter lody,SubFilter hidx,SubFilter hidy,int LLsize)
 {
 	double** tmpLow,**tmpHigh;
+	//print2d("LL2.txt",LL,LLsize,LLsize);
 	conv_down2d(LL,tmpLow,0,lodx,LLsize,LLsize);
 	conv_down2d(tmpLow,ll,1,lody,LLsize/2,LLsize);
 	conv_down2d(tmpLow,hl,1,hidy,LLsize/2,LLsize);
 	conv_down2d(LL,tmpHigh,0,hidx,LLsize,LLsize);
 	conv_down2d(tmpHigh,lh,1,lody,LLsize/2,LLsize);
 	conv_down2d(tmpHigh,hh,1,hidy,LLsize/2,LLsize);
-	print2d("high.txt",tmpHigh,LLsize,LLsize/2);
+	//print2d("low.txt",tmpLow,LLsize,LLsize/2);
+	//print2d("ll.txt",ll,LLsize/2,LLsize/2);
+	//print2d("hl.txt",hl,LLsize/2,LLsize/2);
+	//print2d("high.txt",tmpHigh,LLsize,LLsize/2);
 	release2D(tmpLow,LLsize);
 	release2D(tmpHigh,LLsize);
 }
@@ -175,6 +193,10 @@ void DFdwt2D::ifwt2d(double** ll,double** hl,double** lh,double** hh,SubFilter l
 			tmpll[i][j] +=tmphl[i][j];
 			tmplh[i][j] += tmphh[i][j];
 		}
+		shift(tmpll,1,LLsize,LLsize*2,lory.filterLen-1);
+		shift(tmplh,1,LLsize,LLsize*2,hiry.filterLen-1);
+		//print2d("low1.txt",tmpll,LLsize*2,LLsize);
+		//print2d("high1.txt",tmplh,LLsize*2,LLsize);
 	conv_up2d(tmpll,LL,0,lorx,LLsize,LLsize*2);
 	conv_up2d(tmplh,HH,0,hirx,LLsize,LLsize*2);
 	for (int i = 0;i<LLsize*2;i++)
@@ -182,6 +204,8 @@ void DFdwt2D::ifwt2d(double** ll,double** hl,double** lh,double** hh,SubFilter l
 		{
 			LL[i][j]+=HH[i][j];
 		}
+		shift(LL,0,LLsize*2,LLsize*2,(lorx.filterLen-1));
+		//print2d("LL1.txt",LL,LLsize*2,LLsize*2);
 	release2D(HH,LLsize*2);
 	release2D(tmpll,LLsize*2);
 	release2D(tmphl,LLsize*2);
@@ -205,22 +229,22 @@ void DFdwt2D::conv_down2d(double** input,double** &output,int dir,SubFilter filt
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
-					int input_id = j*2+1+k;
+					int input_id = j*2+1-(filterSize-1)+k;
 					if (input_id<0)
 					{
 						if (scene == LOOP)
-							input_id +=input_xsize;
+							input_id =(input_id+10*input_xsize)%input_xsize;
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					else if (input_id>=input_xsize)
 					{
 						if (scene == LOOP)
-							input_id -= input_xsize;
+							input_id %= input_xsize;
 						else if (scene == BOUNDARY)
 							continue;
 					}
-					outtmp[i][j] += filter.filter[k]*input[i][input_id];
+					outtmp[i][j] += filter.filter[(filterSize-1)-k]*input[i][input_id];
 				}
 			}
 		}
@@ -240,29 +264,53 @@ void DFdwt2D::conv_down2d(double** input,double** &output,int dir,SubFilter filt
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
-					int input_id = j*2+1+k;
+					int input_id = j*2+1-(filterSize-1)+k;
 					if (input_id<0)
 					{
 						if (scene == LOOP)
-							input_id +=input_ysize;
+							input_id = (input_id+10*input_ysize)%input_ysize;
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					else if (input_id>=input_ysize)
 					{
 						if (scene == LOOP)
-							input_id -= input_ysize;
+							input_id %= input_ysize;
 						else if (scene == BOUNDARY)
 							continue;
 					}
-					outtmp[j][i] += filter.filter[k]*input[input_id][i];
+					outtmp[j][i] += filter.filter[(filterSize-1)-k]*input[input_id][i];
 				}
 			}
 		}
 		output = outtmp;
 	}
 }
+void DFdwt2D::shift(double** input,int dir,int input_xsize,int input_ysize,int offset)
+{
+	double tmp[DIM];
+	if (dir == 0)
+	{
+		for (int i = 0;i<input_ysize;i++)
+		{
+			for (int j = 0;j<input_xsize;j++)
+				tmp[(j-offset+input_xsize*10)%input_xsize] = input[i][j];
+			for (int j = 0;j<input_xsize;j++)
+				input[i][j] = tmp[j];
+		}
+	}
+	else if (dir == 1)
+	{
+		for (int i = 0;i<input_xsize;i++)
+		{
+			for (int j = 0;j<input_ysize;j++)
+				tmp[(j-offset+input_ysize*10)%input_ysize] = input[j][i];
+			for (int j = 0;j<input_ysize;j++)
+				input[j][i] = tmp[j];
+		}
 
+	}
+}
 void DFdwt2D::conv_up2d(double** input,double** &output,int dir,SubFilter filter,int input_xsize,int input_ysize)
 {
 	int filterSize = filter.filterLen;
@@ -284,21 +332,21 @@ void DFdwt2D::conv_up2d(double** input,double** &output,int dir,SubFilter filter
 					if (input_id<0)
 					{
 						if (scene == LOOP)
-							input_id +=input_xsize*2;
+							input_id =(input_id+input_xsize*20)%(input_xsize*2);
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					else if (input_id>=input_xsize*2)
 					{
 						if (scene == LOOP)
-							input_id -= input_xsize*2;
+							input_id %= input_xsize*2;
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					if (input_id%2==0)
 						continue;
 					input_id/=2;
-					outtmp[i][j] += filter.filter[k]*input[i][input_id];
+					outtmp[i][j] += filter.filter[(filterSize-1)-k]*input[i][input_id];
 				}
 			}
 		}
@@ -322,21 +370,21 @@ void DFdwt2D::conv_up2d(double** input,double** &output,int dir,SubFilter filter
 					if (input_id<0)
 					{
 						if (scene == LOOP)
-							input_id +=input_ysize*2;
+							input_id =(input_id+input_ysize*20)%(input_ysize*2);
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					else if (input_id>=input_ysize*2)
 					{
 						if (scene == LOOP)
-							input_id -= input_ysize*2;
+							input_id %= input_ysize*2;
 						else if (scene == BOUNDARY)
 							continue;
 					}
 					if (input_id%2==0)
 						continue;
 					input_id/=2;
-					outtmp[j][i] += filter.filter[k]*input[input_id][i];
+					outtmp[j][i] += filter.filter[(filterSize-1)-k]*input[input_id][i];
 				}
 			}
 		}
