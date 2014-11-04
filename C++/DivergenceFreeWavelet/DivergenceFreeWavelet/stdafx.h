@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 using namespace std;
-#define DIM				8
+#define DIM				512
 #define GRID_SIZE		512
 
 inline void release1D(double* tmp)
@@ -39,4 +39,45 @@ inline void print2d(string path,double** tmp,int row, int col)
 		fprintf(fp,"\n");
 	}
 	fclose(fp);
+}
+inline void swap(double& a,double &b)
+{
+	double c = a;
+	a = b;
+	b = c;
+}
+inline double calcDivergence_biggest(double** u,double** v,int row,int col)
+{
+	double sum = -1;
+	for (int i=1;i<row;i++ )
+		for (int j = 1;j<col;j++)
+			if (abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j])>sum)
+				sum = abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j]);
+	return sum;
+}
+inline double calcDivergence_sum(double** u,double** v,int row,int col)
+{
+	double sum = 0;
+	for (int i=1;i<row;i++ )
+		for (int j = 1;j<col;j++)
+			sum += abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j]);
+	return sum;
+}
+inline void mul(double** u,double** v,int row,int col,double multipler)
+{
+	for (int i = 0;i<row;i++)
+		for (int j = 0;j<col;j++)
+		{
+			u[i][j]*=multipler;
+			v[i][j]*=multipler;
+		}
+}
+inline void set_field(double** u,double** v,int row,int col,double uvalue,double vvalue)
+{
+	for (int i = 0;i<row;i++)
+		for (int j = 0;j<col;j++)
+		{
+			u[i][j]=uvalue;
+			v[i][j]=vvalue;
+		}
 }
