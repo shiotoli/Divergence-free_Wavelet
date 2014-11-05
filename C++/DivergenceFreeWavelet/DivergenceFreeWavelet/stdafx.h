@@ -51,16 +51,16 @@ inline double calcDivergence_biggest(double** u,double** v,int row,int col)
 	double sum = -1;
 	for (int i=1;i<row;i++ )
 		for (int j = 1;j<col;j++)
-			if (abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j])>sum)
-				sum = abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j]);
+			if (abs(u[i][j]-u[i][(j-1+col)%col]+v[i][j]-v[(i-1+row)%row][j])>sum)
+				sum = abs(u[i][j]-u[i][(j-1+col)%col]+v[i][j]-v[(i-1+row)%row][j]);
 	return sum;
 }
 inline double calcDivergence_sum(double** u,double** v,int row,int col)
 {
 	double sum = 0;
-	for (int i=1;i<row;i++ )
-		for (int j = 1;j<col;j++)
-			sum += abs(u[i][j]-u[i][j-1]+v[i][j]-v[i-1][j]);
+	for (int i=0;i<row;i++ )
+		for (int j = 0;j<col;j++)
+			sum += abs(u[i][j]-u[i][(j-1+col)%col]+v[i][j]-v[(i-1+row)%row][j]);
 	return sum;
 }
 inline void mul(double** u,double** v,int row,int col,double multipler)
@@ -69,7 +69,7 @@ inline void mul(double** u,double** v,int row,int col,double multipler)
 		for (int j = 0;j<col;j++)
 		{
 			u[i][j]*=multipler;
-			v[i][j]*=multipler;
+			v[i][j]*=0.0;//multipler;
 		}
 }
 inline void set_field(double** u,double** v,int row,int col,double uvalue,double vvalue)
