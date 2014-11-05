@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 using namespace std;
-#define DIM				512
+#define DIM				16
 #define GRID_SIZE		512
 
 inline void release1D(double* tmp)
@@ -79,5 +79,14 @@ inline void set_field(double** u,double** v,int row,int col,double uvalue,double
 		{
 			u[i][j]=uvalue;
 			v[i][j]=vvalue;
+		}
+}
+inline void set_field_rand(double** u,double** v,int row,int col)
+{
+	for (int i = 0;i<row;i++)
+		for (int j = 0;j<col;j++)
+		{
+			u[i][j]=rand()%1000/100000.0;
+			v[i][j]=0.0;
 		}
 }
