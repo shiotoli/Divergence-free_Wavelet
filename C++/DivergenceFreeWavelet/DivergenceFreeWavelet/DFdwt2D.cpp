@@ -37,28 +37,58 @@ void DFdwt2D::wavedec2d(int level)
 		LLsize/=2;
 		lastu = ull;
 		lastv = vll;
-		if (i==level-1)
+		char name[100];
+		set_field(ulh,vlh,LLsize,LLsize,0.00,0.00);
+		set_field(uhl,vhl,LLsize,LLsize,0.00,0.00);
+		set_field(uhh,vhh,LLsize,LLsize,0.00,0.00);
+		set_field(ull,vll,LLsize,LLsize,0.00,0.00);
+		if (i==level-3)
 		{
-			//mul(ull,vll,LLsize,LLsize,0);
-			set_field(ull,vll,LLsize,LLsize,1.0,-1.0);
+			sprintf(name,"ull%04d.txt",i);
+			print2d(string(name),ull,LLsize,LLsize);
+			sprintf(name,"uhl%04d.txt",i);
+			print2d(string(name),uhl,LLsize,LLsize);
+			sprintf(name,"ulh%04d.txt",i);
+			print2d(string(name),ulh,LLsize,LLsize);
+			sprintf(name,"uhh%04d.txt",i);
+			print2d(string(name),uhh,LLsize,LLsize);
+			sprintf(name,"vll%04d.txt",i);
+			print2d(string(name),vll,LLsize,LLsize);
+			sprintf(name,"vhl%04d.txt",i);
+			print2d(string(name),vhl,LLsize,LLsize);
+			sprintf(name,"vlh%04d.txt",i);
+			print2d(string(name),vlh,LLsize,LLsize);
+			sprintf(name,"uhh%04d.txt",i);
+			print2d(string(name),vhh,LLsize,LLsize);
+
+			//mul(uhh,vhh,LLsize,LLsize,0);
+			//mul(uhl,vhl,LLsize,LLsize,5);
+			//mul(ulh,vlh,LLsize,LLsize,5);
+			uhh[0][0] = 0.3;
+			vhh[0][0] = 0.0;
+			//set_field(uhh,vhh,LLsize,LLsize,0.03,0.00);
+			//set_field(ulh,vlh,LLsize,LLsize,0.03,0.00);
+			//set_field(uhl,vhl,LLsize,LLsize,0.03,0.03);
 		}
 	}
 }
 void DFdwt2D::waverec2d(int level)
 {
-	double** lastu,**lastv;
+	double** lastu=waveletCoeULL[level],**lastv=waveletCoeVLL[level],**nextu,**nextv;
 	for (int i = level;i>=0;i--)
 	{
-		ifwt2d_uv(waveletCoeULL[i],waveletCoeUHL[i],waveletCoeULH[i],waveletCoeUHH[i],waveletCoeVLL[i],waveletCoeVLH[i],waveletCoeVHL[i],waveletCoeVHH[i],lastu,lastv,waveletCoeSize[i]);
-		recWaveletCoeULL.push_back(lastu);
-		recWaveletCoeVLL.push_back(lastv);
+		ifwt2d_uv(lastu,waveletCoeUHL[i],waveletCoeULH[i],waveletCoeUHH[i],lastv,waveletCoeVLH[i],waveletCoeVHL[i],waveletCoeVHH[i],nextu,nextv,waveletCoeSize[i]);
+		recWaveletCoeULL.push_back(nextu);
+		recWaveletCoeVLL.push_back(nextv);
+		lastu = nextu;
+		lastv = nextv;
 		recWaveletCoeSize.push_back(waveletCoeSize[i]*2);
 	}
 	cout<<calcDivergence_sum(lastu,lastv,DIM,DIM)<<' '<<calcDivergence_biggest(lastu,lastv,DIM,DIM)<<endl;
+	print2d("..\\..\\..\\mathematica\\lastu.txt",lastu,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
+	print2d("..\\..\\..\\mathematica\\lastv.txt",lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
 	system("pause");
 		
-	//print2d("lastu.txt",lastu,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
-	//print2d("lastv.txt",lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2);
 	//print2d("realu.txt",waveletCoeULL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
 	//print2d("realv.txt",waveletCoeVLL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
 }
