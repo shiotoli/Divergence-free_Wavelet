@@ -41,7 +41,7 @@ void DFdwt2D::wavedec2d(int level)
 		set_field(ulh,vlh,LLsize,LLsize,0.00,0.00);
 		set_field(uhl,vhl,LLsize,LLsize,0.00,0.00);
 		set_field(uhh,vhh,LLsize,LLsize,0.00,0.00);
-		set_field(ull,vll,LLsize,LLsize,0.00,0.00);
+		//set_field(ull,vll,LLsize,LLsize,0.00,0.00);
 		//cout<<calcDivergence_biggest(ull,vll,LLsize,LLsize)<<endl;
 			sprintf(name,"ull%04d.txt",i);
 			print2d(string(name),ull,LLsize,LLsize);
@@ -61,12 +61,13 @@ void DFdwt2D::wavedec2d(int level)
 			print2d(string(name),vhh,LLsize,LLsize);
 		if (i==level-4)
 		{
+			
 			//uhh[0][0] = 0.3;
 			//vhh[0][0] = 0.0;
-			//mul(uhh,vhh,LLsize,LLsize,0);
-			//mul(uhl,vhl,LLsize,LLsize,5);
-			//mul(ulh,vlh,LLsize,LLsize,5);
-			uhh[1][1] = 0.3;
+			//mul(uhh,vhh,LLsize,LLsize,1);
+			//mul(uhl,vhl,LLsize,LLsize,1);
+			//mul(ulh,vlh,LLsize,LLsize,1);
+			//uhh[3][3] = 0.3;
 			//vhh[0][0] = 0.0;
 			//uhh[2][2] = 5;
 			//set_field_rand(uhl,vhl,LLsize,LLsize);
@@ -235,8 +236,8 @@ void DFdwt2D::ifwt2d(double** ll,double** hl,double** lh,double** hh,SubFilter l
 		}
 		//shift(tmplh,1,LLsize,LLsize*2,1);
 		//shift(tmpll,1,LLsize,LLsize*2,1);
-		print2d("low1.txt",tmpll,LLsize*2,LLsize);
-		print2d("high1.txt",tmplh,LLsize*2,LLsize);
+		//print2d("low1.txt",tmpll,LLsize*2,LLsize);
+		//print2d("high1.txt",tmplh,LLsize*2,LLsize);
 	conv_up2d(tmpll,LL,0,lorx,LLsize,LLsize*2);
 	conv_up2d(tmplh,HH,0,hirx,LLsize,LLsize*2);
 	for (int i = 0;i<LLsize*2;i++)
@@ -245,7 +246,7 @@ void DFdwt2D::ifwt2d(double** ll,double** hl,double** lh,double** hh,SubFilter l
 			LL[i][j]+=HH[i][j];
 		}
 		//shift(LL,0,LLsize*2,LLsize*2,(lorx.filterLen-1));
-		print2d("LL1.txt",LL,LLsize*2,LLsize*2);
+		//print2d("LL1.txt",LL,LLsize*2,LLsize*2);
 	release2D(HH,LLsize*2);
 	release2D(tmpll,LLsize*2);
 	release2D(tmphl,LLsize*2);
@@ -269,7 +270,11 @@ void DFdwt2D::conv_down2d(double** input,double** &output,int dir,SubFilter filt
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
+#ifdef DUAL_CONVOLUTION
+					int input_id = j*2+1+/*(filterSize-1)+*/k+filter.startid;
+#else
 					int input_id = j*2+1-/*(filterSize-1)+*/k-filter.startid;
+#endif
 					if (input_id<0)
 					{
 						if (scene == LOOP)
@@ -304,7 +309,11 @@ void DFdwt2D::conv_down2d(double** input,double** &output,int dir,SubFilter filt
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
+#ifdef DUAL_CONVOLUTION
+					int input_id = j*2+1+/*(filterSize-1)+*/k+filter.startid;
+#else
 					int input_id = j*2+1-/*(filterSize-1)+*/k-filter.startid;
+#endif
 					if (input_id<0)
 					{
 						if (scene == LOOP)
@@ -368,7 +377,11 @@ void DFdwt2D::conv_up2d(double** input,double** &output,int dir,SubFilter filter
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
+#ifdef DUAL_CONVOLUTION
+					int input_id = j-/*(filterSize-1)+*/k-filter.startid;
+#else
 					int input_id = j+/*(filterSize-1)+*/k+filter.startid;
+#endif
 					if (input_id<0)
 					{
 						if (scene == LOOP)
@@ -406,7 +419,11 @@ void DFdwt2D::conv_up2d(double** input,double** &output,int dir,SubFilter filter
 			{
 				for (int k = 0;k<filter.filterLen;k++)
 				{
+#ifdef DUAL_CONVOLUTION
+					int input_id = j-/*(filterSize-1)+*/k-filter.startid;
+#else
 					int input_id = j+/*(filterSize-1)+*/k+filter.startid;
+#endif
 					if (input_id<0)
 					{
 						if (scene == LOOP)

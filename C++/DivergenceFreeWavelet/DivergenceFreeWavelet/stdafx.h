@@ -8,6 +8,7 @@
 using namespace std;
 #define DIM				512
 #define GRID_SIZE		512
+#define DUAL_CONVOLUTION
 
 inline void release1D(double* tmp)
 {
