@@ -171,6 +171,8 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 		wlhl[i][j][k] = vlhltmp[i][j][k];
 		if (i!=0)
 			wlhl[i][j][k]+=0.25*(vlhl[i][j][k] - vlhl[i - 1][j][k]);
+		else 
+			wlhl[i][j][k] += 0.25*ulhl[i][j][k] - 0.25*(scene == LOOP ? ulhltmp[LLsize / 2 - 1][j][k] : 0);
 	}
 }
 void DFdwt3D::fwt3d_uv(double*** u, double*** &ulll, double*** &ullh, double*** &ulhl, double*** &ulhh, double*** &uhll, double*** &uhlh, double*** &uhhl, double*** &uhh, int LLsize)
