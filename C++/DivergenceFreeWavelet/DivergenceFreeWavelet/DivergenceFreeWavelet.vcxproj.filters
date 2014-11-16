@@ -39,6 +39,9 @@
     <ClInclude Include="Filter.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DFdwt3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp">
@@ -51,6 +54,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Filter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DFdwt3d.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

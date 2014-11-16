@@ -38,10 +38,12 @@ void DFdwt2D::wavedec2d(int level)
 		lastu = ull;
 		lastv = vll;
 		char name[100];
-		set_field(ulh,vlh,LLsize,LLsize,0.00,0.00);
-		set_field(uhl,vhl,LLsize,LLsize,0.00,0.00);
-		set_field(uhh,vhh,LLsize,LLsize,0.00,0.00);
-		set_field(ull,vll,LLsize,LLsize,0.00,0.00);
+		set_field(ulh, LLsize, LLsize, 0.00);
+		set_field(uhl, LLsize, LLsize, 0.00);
+		set_field(uhh, LLsize, LLsize, 0.00);
+		set_field(vlh, LLsize, LLsize, 0.00);
+		set_field(vhl, LLsize, LLsize, 0.00);
+		set_field(vhh, LLsize, LLsize, 0.00);
 		//cout<<calcDivergence_biggest(ull,vll,LLsize,LLsize)<<endl;
 			sprintf(name,"ull%04d.txt",i);
 			print2d(string(name),ull,LLsize,LLsize);
@@ -61,7 +63,8 @@ void DFdwt2D::wavedec2d(int level)
 			print2d(string(name),vhh,LLsize,LLsize);
 		if (i==level-1)
 		{
-			ull[0][0] = vll[0][0]=1;;
+			uhh[0][0] = vhh[0][0]=1;;
+			set_field(ull,vll,LLsize,LLsize,
 			//uhh[0][0] = 0.3;
 			//vhh[0][0] = 0.0;
 			//mul(uhh,vhh,LLsize,LLsize,1);

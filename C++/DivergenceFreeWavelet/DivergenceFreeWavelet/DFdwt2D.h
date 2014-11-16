@@ -5,11 +5,7 @@
 class DFdwt2D
 {
 public:
-	enum sceneType 
-	{
-		LOOP,
-		BOUNDARY
-	}scene;
+	SceneType scene;
 	Velocity2D	velocityField;
 	vector<double**> waveletCoeVHH,recWaveletCoeVHH;
 	vector<double**> waveletCoeVHL,recWaveletCoeVHL;
