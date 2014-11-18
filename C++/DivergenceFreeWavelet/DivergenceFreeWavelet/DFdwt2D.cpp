@@ -64,7 +64,7 @@ void DFdwt2D::wavedec2d(int level)
 		if (i==level-1)
 		{
 			uhh[0][0] = vhh[0][0]=1;;
-			set_field(ull,vll,LLsize,LLsize,
+			//set_field(ull,vll,LLsize,LLsize,1);
 			//uhh[0][0] = 0.3;
 			//vhh[0][0] = 0.0;
 			//mul(uhh,vhh,LLsize,LLsize,1);

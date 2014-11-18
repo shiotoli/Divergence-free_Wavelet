@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 using namespace std;
-#define DIM				512
+#define DIM				128
 #define GRID_SIZE		512
 #define DUAL_CONVOLUTION
 enum SceneType
@@ -101,12 +101,12 @@ inline double calcDivergence_biggest(double*** u, double*** v, double*** w, int 
 	}
 	else if (st == BOUNDARY)
 	{
-		for (int i = 1; i<xn; i++)
-		for (int j = 1; j<yn; j++)
-		for (int k = 1; k<zn; k++)
+		for (int i = 2; i<xn-1; i++)
+		for (int j = 2; j<yn-1; j++)
+		for (int k = 2; k<zn-1; k++)
 		{
-			if (abs(u[i][j][k] - u[(i - 1 + xn) % xn][j][k] + v[i][j][k] - v[i][(j - 1 + yn) % yn][k] + w[i][j][k] - w[i][j][(k - 1 + zn) % zn])>sum)
-				sum = abs(u[i][j][k] - u[(i - 1 + xn) % xn][j][k] + v[i][j][k] - v[i][(j - 1 + yn) % yn][k] + w[i][j][k] - w[i][j][(k - 1 + zn) % zn]);
+			if (abs(u[i][j][k] - u[i - 1][j][k] + v[i][j][k] - v[i][j - 1][k] + w[i][j][k] - w[i][j][k - 1])>sum)
+				sum = abs(u[i][j][k] - u[i - 1][j][k] + v[i][j][k] - v[i][j - 1][k] + w[i][j][k] - w[i][j][k - 1]);
 		}
 	}
 	return sum;
