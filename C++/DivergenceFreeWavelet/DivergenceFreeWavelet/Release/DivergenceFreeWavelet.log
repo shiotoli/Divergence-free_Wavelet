@@ -1,25 +1,31 @@
-﻿生成启动时间为 2014/11/18 19:01:25。
-     1>项目“D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”在节点 2 上(Build 个目标)。
-     1>ClCompile:
+﻿生成启动时间为 11/19/2014 7:51:35 PM。
+     1>项目“D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”在节点 2 上(build 个目标)。
+       项目文件包含 ToolsVersion="12.0" 设置，但此工具集未知或缺失。您可以通过为此工具集安装相应的 .NET Framework 来解决此问题。将项目视为具有 ToolsVersion="4.0" 设置。
+     1>InitializeBuildStatus:
+         正在创建“Release\DivergenceFreeWavelet.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\yanxiao\lab\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\stdafx.h(65): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\stdafx.h(65): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : 参见“fopen”的声明
-     1>d:\yanxiao\lab\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\stdafx.h(76): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>d:\yanxiao\github\divergence-free_wavelet\c++\divergencefreewavelet\divergencefreewavelet\stdafx.h(76): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : 参见“fopen”的声明
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DivergenceFreeWavelet.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.lib" /MACHINE:X86 Release\BaseWavelet.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DivergenceFreeWavelet.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.lib" /MACHINE:X86 Release\BaseWavelet.obj
          Release\DFdwt2D.obj
          Release\DFdwt3d.obj
          Release\Filter.obj
          Release\main.obj
          正在生成代码
          已完成代码的生成
-         DivergenceFreeWavelet.vcxproj -> D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe
+         DivergenceFreeWavelet.vcxproj -> D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe;#1" /manifest Release\DivergenceFreeWavelet.exe.intermediate.manifest
-     1>已完成生成项目“D:\YanXiao\lab\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”(Build 个目标)的操作。
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe;#1" /manifest Release\DivergenceFreeWavelet.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Release\DivergenceFreeWavelet.unsuccessfulbuild”。
+         正在对“Release\DivergenceFreeWavelet.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:03.61
+已用时间 00:00:05.25

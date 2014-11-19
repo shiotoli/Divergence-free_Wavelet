@@ -21,7 +21,7 @@ void DFdwt3D::loadData(string u_path, string v_path, string w_path, string filte
 	fclose(fp);
 	filter0.loadFilter(filter0_path);
 	filter1.loadFilter(filter1_path);
-	cout << calcDivergence_sum(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM, BOUNDARY) << ' ' << calcDivergence_biggest(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM, BOUNDARY) << endl;
+	cout << calcDivergence_sum(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM,scene) << ' ' << calcDivergence_biggest(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM,scene) << endl;
 }
 void DFdwt3D::wavedec3d(int level)
 {
@@ -40,13 +40,36 @@ void DFdwt3D::wavedec3d(int level)
 		lastu = waveletCoeULLL[i];
 		lastv = waveletCoeVLLL[i];
 		lastv = waveletCoeWLLL[i];
-// 		char name[100];
-// 		set_field(ulh, LLsize, LLsize, 0.00);
+		// 		char name[100];
+		set_field(waveletCoeDF1HHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1HHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1HLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1LHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1LLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1LHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF1HLL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2HHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2HHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2HLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2LHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2LLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2LHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNHHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNHHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNHLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNLHH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNLLH[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNLHL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeNHLL[i], LLsize, LLsize,LLsize, 0.00);
+		set_field(waveletCoeULLL[i],LLsize,LLsize,LLsize,0.00);
+		set_field(waveletCoeVLLL[i],LLsize,LLsize,LLsize,0.00);
+		set_field(waveletCoeWLLL[i],LLsize,LLsize,LLsize,0.00);
 // 		set_field(uhl, LLsize, LLsize, 0.00);
 // 		set_field(uhh, LLsize, LLsize, 0.00);
 // 		set_field(vlh, LLsize, LLsize, 0.00);
 // 		set_field(vhl, LLsize, LLsize, 0.00);
-// 		set_field(vhh, LLsize, LLsize, 0.00);
+//		set_field(vhh, LLsize, LLsize, 0.00);
 // 		//cout<<calcDivergence_biggest(ull,vll,LLsize,LLsize)<<endl;
 // 		sprintf(name, "ull%04d.txt", i);
 // 		print2d(string(name), ull, LLsize, LLsize);
@@ -66,6 +89,8 @@ void DFdwt3D::wavedec3d(int level)
 // 		print2d(string(name), vhh, LLsize, LLsize);
 		if (i == level - 1)
 		{
+			set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize,1.00);
+			set_field(waveletCoeDF1HLL[i], LLsize, LLsize,LLsize,1.00);
 			//uhh[0][0] = vhh[0][0] = 1;;
 			//set_field(ull, vll, LLsize, LLsize,
 				//uhh[0][0] = 0.3;
@@ -105,6 +130,8 @@ void DFdwt3D::waverec3d(int level)
 	//return ;
 	cout << calcDivergence_sum(lastu, lastv, lastw, DIM, DIM, DIM, scene) << ' ' << calcDivergence_biggest(lastu, lastv, lastw, DIM, DIM, DIM, scene) << endl;
 	print3d("lastu.txt", lastu, DIM, DIM, DIM);
+	print3d("lastv.txt", lastv, DIM, DIM, DIM);
+	print3d("lastw.txt", lastw, DIM, DIM, DIM);
 	//print2d("..\\..\\..\\mathematica\\lastu.txt", lastu, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);
 	//set_field(lastu,lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2,1,0);
 	//print2d("..\\..\\..\\mathematica\\lastv.txt", lastv, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);
@@ -122,8 +149,11 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 	double*** vlll, *** vllh, *** vlhl, *** vlhh, *** vhll, *** vhlh, *** vhhl, *** vhhh;
 	double*** wlll, *** wllh, *** wlhl, *** wlhh, *** whll, *** whlh, *** whhl, *** whhh;
 	fwt3d(u, ullltmp, ullhtmp, ulhltmp, ulhhtmp, uhlltmp, uhlhtmp, uhhltmp, uhhhtmp, filter1.lod, filter0.lod, filter0.lod, filter1.hid, filter0.hid, filter0.hid, LLsize);
+	print3d("ulll.txt",ullltmp,LLsize/2,LLsize/2,LLsize/2);
 	fwt3d(v, vllltmp, vllhtmp, vlhltmp, vlhhtmp, vhlltmp, vhlhtmp, vhhltmp, vhhhtmp, filter0.lod, filter1.lod, filter0.lod, filter0.hid, filter1.hid, filter0.hid, LLsize);
+	print3d("vlll.txt",vllltmp,LLsize/2,LLsize/2,LLsize/2);
 	fwt3d(w, wllltmp, wllhtmp, wlhltmp, wlhhtmp, whlltmp, whlhtmp, whhltmp, whhhtmp, filter0.lod, filter0.lod, filter1.lod, filter0.hid, filter0.hid, filter1.hid, LLsize);
+	print3d("wlll.txt",wllltmp,LLsize/2,LLsize/2,LLsize/2);
 	new3D(ulll, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(ullh, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(ulhl, LLsize / 2, LLsize / 2, LLsize / 2);
@@ -148,6 +178,30 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 	new3D(whlh, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(whhl, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(whhh, LLsize / 2, LLsize / 2, LLsize / 2);
+// 	print3d("uhhh1.txt",uhhhtmp,2,2,2);
+// 	print3d("uhlh1.txt",uhlhtmp,2,2,2);
+// 	print3d("ulhh1.txt",ulhhtmp,2,2,2);
+// 	print3d("uhhl1.txt",uhhltmp,2,2,2);
+// 	print3d("ullh1.txt",ullhtmp,2,2,2);
+// 	print3d("ulhl1.txt",ulhltmp,2,2,2);
+// 	print3d("uhll1.txt",uhlltmp,2,2,2);
+// 	print3d("ulll1.txt",ullltmp,2,2,2);
+// 	print3d("vhhh1.txt",vhhhtmp,2,2,2);
+// 	print3d("vhlh1.txt",vhlhtmp,2,2,2);
+// 	print3d("vlhh1.txt",vlhhtmp,2,2,2);
+// 	print3d("vhhl1.txt",vhhltmp,2,2,2);
+// 	print3d("vllh1.txt",vllhtmp,2,2,2);
+// 	print3d("vlhl1.txt",vlhltmp,2,2,2);
+// 	print3d("vhll1.txt",vhlltmp,2,2,2);
+// 	print3d("vlll1.txt",vllltmp,2,2,2);
+// 	print3d("whhh1.txt",whhhtmp,2,2,2);
+// 	print3d("whlh1.txt",whlhtmp,2,2,2);
+// 	print3d("wlhh1.txt",wlhhtmp,2,2,2);
+// 	print3d("whhl1.txt",whhltmp,2,2,2);
+// 	print3d("wllh1.txt",wllhtmp,2,2,2);
+// 	print3d("wlhl1.txt",wlhltmp,2,2,2);
+// 	print3d("whll1.txt",whlltmp,2,2,2);
+// 	print3d("wlll1.txt",wllltmp,2,2,2);
 	for (int i = 0; i < LLsize / 2;i++)
 	for (int j = 0; j < LLsize / 2;j++)
 	for (int k = 0; k < LLsize / 2; k++)
@@ -192,19 +246,19 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 		vhhl[i][j][k] = whhltmp[i][j][k];
 		whhl[i][j][k] = 0.5*uhhltmp[i][j][k]+0.5*vhhltmp[i][j][k];
 		if (k!=0)
-			whhl[i][j][k] += 0.125*wllhtmp[i][j][k]-0.125*wllhtmp[i][j][k-1];
+			whhl[i][j][k] += 0.125*whhltmp[i][j][k]-0.125*whhltmp[i][j][k-1];
 		else
-			whhl[i][j][k] += 0.125*wllhtmp[i][j][k] - 0.125*(scene == LOOP? wllhtmp[i][j][LLsize/2-1]:0);
+			whhl[i][j][k] += 0.125*whhltmp[i][j][k] - 0.125*(scene == LOOP? whhltmp[i][j][LLsize/2-1]:0);
 		uhlh[i][j][k] =0.5*uhlhtmp[i][j][k] -0.5*whlhtmp[i][j][k];
 		vhlh[i][j][k] = vhlhtmp[i][j][k];
-		whlh[i][j][k] = 0.5*uhlhtmp[i][j][k]+0.5*whhltmp[i][j][k];
+		whlh[i][j][k] = 0.5*uhlhtmp[i][j][k]+0.5*whlhtmp[i][j][k];
 		if (j!=0)
 			whlh[i][j][k] += 0.125*vhlhtmp[i][j][k]-0.125*vhlhtmp[i][j-1][k];
 		else
 			whlh[i][j][k] += 0.125*vhlhtmp[i][j][k] - 0.125*(scene == LOOP? vhlhtmp[i][LLsize/2-1][k]:0);
-		ulhh[i][j][k] = 0.5*vlhhtmp[i][j][k]-0.5*wlhh[i][j][k];
-		vlhh[i][j][k] = vlhh[i][j][k];
-		wlhh[i][j][k] = 0.5*vlhh[i][j][k] + 0.5*wlhh[i][j][k];
+		ulhh[i][j][k] = 0.5*vlhhtmp[i][j][k]-0.5*wlhhtmp[i][j][k];
+		vlhh[i][j][k] = ulhhtmp[i][j][k];
+		wlhh[i][j][k] = 0.5*vlhhtmp[i][j][k] + 0.5*wlhhtmp[i][j][k];
 		if (i!=0)
 			wlhh[i][j][k] += 0.125*ulhhtmp[i][j][k]-0.125*ulhhtmp[i-1][j][k];
 		else
@@ -212,31 +266,31 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 		uhhh[i][j][k] = 1.0/3.0*(-2*uhhhtmp[i][j][k]+vhhhtmp[i][j][k]+whhhtmp[i][j][k]);
 		vhhh[i][j][k] = 1.0/3.0*(-uhhhtmp[i][j][k]+2*vhhhtmp[i][j][k]-whhhtmp[i][j][k]);
 		whhh[i][j][k] = 1.0/3.0*(uhhhtmp[i][j][k]+vhhhtmp[i][j][k]+whhhtmp[i][j][k]);
-		waveletCoeULLL.push_back(ulll);
-		waveletCoeDF1LLH.push_back(ullh);
-		waveletCoeDF1LHL.push_back(ulhl);
-		waveletCoeDF1HLL.push_back(uhll);
-		waveletCoeDF1HHL.push_back(uhhl);
-		waveletCoeDF1HLH.push_back(uhlh);
-		waveletCoeDF1LHH.push_back(ulhh);
-		waveletCoeDF1HHH.push_back(uhhh);
-		waveletCoeVLLL.push_back(vlll);
-		waveletCoeDF2LLH.push_back(vllh);
-		waveletCoeDF2LHL.push_back(vlhl);
-		waveletCoeDF2HLL.push_back(vhll);
-		waveletCoeDF2HHL.push_back(vhhl);
-		waveletCoeDF2HLH.push_back(vhlh);
-		waveletCoeDF2LHH.push_back(vlhh);
-		waveletCoeDF2HHH.push_back(vhhh);
-		waveletCoeWLLL.push_back(wlll);
-		waveletCoeNLLH.push_back(wllh);
-		waveletCoeNLHL.push_back(wlhl);
-		waveletCoeNHLL.push_back(whll);
-		waveletCoeNHHL.push_back(whhl);
-		waveletCoeNHLH.push_back(whlh);
-		waveletCoeNLHH.push_back(wlhh);
-		waveletCoeNHHH.push_back(whhh);
 	}
+	waveletCoeULLL.push_back(ulll);
+	waveletCoeDF1LLH.push_back(ullh);
+	waveletCoeDF1LHL.push_back(ulhl);
+	waveletCoeDF1HLL.push_back(uhll);
+	waveletCoeDF1HHL.push_back(uhhl);
+	waveletCoeDF1HLH.push_back(uhlh);
+	waveletCoeDF1LHH.push_back(ulhh);
+	waveletCoeDF1HHH.push_back(uhhh);
+	waveletCoeVLLL.push_back(vlll);
+	waveletCoeDF2LLH.push_back(vllh);
+	waveletCoeDF2LHL.push_back(vlhl);
+	waveletCoeDF2HLL.push_back(vhll);
+	waveletCoeDF2HHL.push_back(vhhl);
+	waveletCoeDF2HLH.push_back(vhlh);
+	waveletCoeDF2LHH.push_back(vlhh);
+	waveletCoeDF2HHH.push_back(vhhh);
+	waveletCoeWLLL.push_back(wlll);
+	waveletCoeNLLH.push_back(wllh);
+	waveletCoeNLHL.push_back(wlhl);
+	waveletCoeNHLL.push_back(whll);
+	waveletCoeNHHL.push_back(whhl);
+	waveletCoeNHLH.push_back(whlh);
+	waveletCoeNLHH.push_back(wlhh);
+	waveletCoeNHHH.push_back(whhh);
 	release3D(ullltmp,LLsize/2,LLsize/2);
 	release3D(ullhtmp,LLsize/2,LLsize/2);
 	release3D(ulhltmp,LLsize/2,LLsize/2);
@@ -262,10 +316,20 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 	release3D(whhltmp,LLsize/2,LLsize/2);
 	release3D(whhhtmp,LLsize/2,LLsize/2);
 }
+void DFdwt3D::test()
+{
+	double*** tmp, *** tmp1,***tt,***tt1;
+	conv_down3d(velocityField.u,tmp,2,filter0.lod,4,4,4);
+	conv_down3d(velocityField.u,tmp1,2,filter0.hid,4,4,4);
+	conv_up3d(tmp,tt,2,filter0.lor,4,4,2);
+	conv_up3d(tmp1,tt1,2,filter0.hir,4,4,2);
+	addMatrix_3d(tt,tt1,tt,4,4,4);
+	print3d("tt.txt",tt,4,4,4);
+}
 void DFdwt3D::ifwt3d_uvw(int level, double*** &u, double*** &v, double*** &w, int LLsize)
 {
-	double*** ullltmp = waveletCoeULLL[level], *** ullhtmp=waveletCoeDF1LLH[level], *** ulhltmp=waveletCoeDF1LHL[level], *** ulhhtmp=waveletCoeDF1HHL[level], *** uhlltmp=waveletCoeDF1HLL[level], *** uhlhtmp=waveletCoeDF1HLH[level], *** uhhltmp=waveletCoeDF1HHL[level], *** uhhhtmp=waveletCoeDF1HHH[level];
-	double*** vllltmp = waveletCoeVLLL[level], *** vllhtmp=waveletCoeDF1LLH[level], *** vlhltmp=waveletCoeDF1LHL[level], *** vlhhtmp=waveletCoeDF1LHH[level], *** vhlltmp=waveletCoeDF2HLL[level], *** vhlhtmp=waveletCoeDF2HLH[level], *** vhhltmp=waveletCoeDF2HHL[level], *** vhhhtmp=waveletCoeDF2HHH[level];
+	double*** ullltmp = waveletCoeULLL[level], *** ullhtmp=waveletCoeDF1LLH[level], *** ulhltmp=waveletCoeDF1LHL[level], *** ulhhtmp=waveletCoeDF1LHH[level], *** uhlltmp=waveletCoeDF1HLL[level], *** uhlhtmp=waveletCoeDF1HLH[level], *** uhhltmp=waveletCoeDF1HHL[level], *** uhhhtmp=waveletCoeDF1HHH[level];
+	double*** vllltmp = waveletCoeVLLL[level], *** vllhtmp=waveletCoeDF2LLH[level], *** vlhltmp=waveletCoeDF2LHL[level], *** vlhhtmp=waveletCoeDF2LHH[level], *** vhlltmp=waveletCoeDF2HLL[level], *** vhlhtmp=waveletCoeDF2HLH[level], *** vhhltmp=waveletCoeDF2HHL[level], *** vhhhtmp=waveletCoeDF2HHH[level];
 	double*** wllltmp = waveletCoeWLLL[level], *** wllhtmp=waveletCoeNLLH[level], *** wlhltmp=waveletCoeNLHL[level], *** wlhhtmp=waveletCoeNLHH[level], *** whlltmp=waveletCoeNHLL[level], *** whlhtmp=waveletCoeNHLH[level], *** whhltmp=waveletCoeNHHL[level], *** whhhtmp=waveletCoeNHHH[level];
 	double*** ulll, *** ullh, *** ulhl, *** ulhh, *** uhll, *** uhlh, *** uhhl, *** uhhh;
 	double*** vlll, *** vllh, *** vlhl, *** vlhh, *** vhll, *** vhlh, *** vhhl, *** vhhh;
@@ -334,7 +398,7 @@ void DFdwt3D::ifwt3d_uvw(int level, double*** &u, double*** &v, double*** &w, in
 				else
 					wllh[i][j][k] -= 0.25*ullhtmp[i][j][k]-0.25*(scene == LOOP?ullhtmp[LLsize-1][j][k]:0);
 				if (j!=0)
-					wllh[i][j][k] -= 0.25*vllhtmp[i][j][k]-0.25*vlhltmp[i][j-1][k];
+					wllh[i][j][k] -= 0.25*vllhtmp[i][j][k]-0.25*vllhtmp[i][j-1][k];
 				else
 					wllh[i][j][k] -= 0.25*vllhtmp[i][j][k]-0.25*(scene == LOOP?vllhtmp[i][LLsize-1][k]:0);
 				uhhl[i][j][k] = uhhltmp[i][j][k] + whhltmp[i][j][k];
@@ -360,24 +424,51 @@ void DFdwt3D::ifwt3d_uvw(int level, double*** &u, double*** &v, double*** &w, in
 				else
 					whlh[i][j][k] -= 0.125*(vhlhtmp[i][j][k] - (scene == LOOP?vhlhtmp[i][LLsize - 1][k]:0));
 				ulhh[i][j][k] = vlhhtmp[i][j][k];
-				vlhh[i][j][k] = -uhlh[i][j][k] + whlh[i][j][k];
+				vlhh[i][j][k] = ulhhtmp[i][j][k] + wlhhtmp[i][j][k];
 				if (i!=0)
 					vlhh[i][j][k] -= 0.125*(vlhhtmp[i][j][k] - vlhhtmp[i-1][j][k]);
 				else
 					vlhh[i][j][k] -= 0.125*(vlhhtmp[i][j][k] - (scene == LOOP?vlhhtmp[LLsize - 1][j][k]:0));
-				wlhh[i][j][k] = -ulhh[i][j][k] + wlhh[i][j][k];
+				wlhh[i][j][k] = -ulhhtmp[i][j][k] + wlhhtmp[i][j][k];
 				if (i!=0)
-					whhl[i][j][k] -= 0.125*(vhhltmp[i][j][k] - vhhltmp[i-1][j][k]);
+					wlhh[i][j][k] -= 0.125*(vlhhtmp[i][j][k] - vlhhtmp[i-1][j][k]);
 				else
-					whhl[i][j][k] -= 0.125*(vhhltmp[i][j][k] - (scene == LOOP?vhhltmp[LLsize - 1][j][k]:0));
-				uhhh[i][j][k] = - uhhh[i][j][k]+whhh[i][j][k];
-				vhhh[i][j][k] = vhhh[i][j][k]+whhh[i][j][k];
-				whhh[i][j][k] = uhhh[i][j][k]-vhhh[i][j][k]+whhh[i][j][k];
+					wlhh[i][j][k] -= 0.125*(vlhhtmp[i][j][k] - (scene == LOOP?vlhhtmp[LLsize - 1][j][k]:0));
+				uhhh[i][j][k] = - uhhhtmp[i][j][k]+whhhtmp[i][j][k];
+				vhhh[i][j][k] = vhhhtmp[i][j][k]+whhhtmp[i][j][k];
+				whhh[i][j][k] = uhhhtmp[i][j][k]-vhhhtmp[i][j][k]+whhhtmp[i][j][k];
 
 			}
-	ifwt3d(ulll,ullh,ulhl,ulhh,uhll,uhlh,uhhl,uhhh,filter1.lod, filter0.lod, filter0.lod, filter1.hid, filter0.hid, filter0.hid,u, LLsize);
-	ifwt3d(vlll,vllh,vlhl,vlhh,vhll,vhlh,vhhl,vhhh,filter1.lod, filter0.lod, filter0.lod, filter1.hid, filter0.hid, filter0.hid,v, LLsize);
-	ifwt3d(wlll,wllh,wlhl,wlhh,whll,whlh,whhl,whhh,filter1.lod, filter0.lod, filter0.lod, filter1.hid, filter0.hid, filter0.hid,w, LLsize);
+
+// 			print3d("uhhhtmp.txt",uhhhtmp,2,2,2);
+// 			print3d("vlhhtmp.txt",vlhhtmp,2,2,2);
+// 			print3d("uhhh.txt",uhhh,2,2,2);
+// 			print3d("uhlh.txt",uhlh,2,2,2);
+// 			print3d("ulhh.txt",ulhh,2,2,2);
+// 			print3d("uhhl.txt",uhhl,2,2,2);
+// 			print3d("ullh.txt",ullh,2,2,2);
+// 			print3d("ulhl.txt",ulhl,2,2,2);
+// 			print3d("uhll.txt",uhll,2,2,2);
+// 			print3d("ulll.txt",ulll,2,2,2);
+// 			print3d("vhhh.txt",vhhh,2,2,2);
+// 			print3d("vhlh.txt",vhlh,2,2,2);
+// 			print3d("vlhh.txt",vlhh,2,2,2);
+// 			print3d("vhhl.txt",vhhl,2,2,2);
+// 			print3d("vllh.txt",vllh,2,2,2);
+// 			print3d("vlhl.txt",vlhl,2,2,2);
+// 			print3d("vhll.txt",vhll,2,2,2);
+// 			print3d("vlll.txt",vlll,2,2,2);
+// 			print3d("whhh.txt",whhh,2,2,2);
+// 			print3d("whlh.txt",whlh,2,2,2);
+// 			print3d("wlhh.txt",wlhh,2,2,2);
+// 			print3d("whhl.txt",whhl,2,2,2);
+// 			print3d("wllh.txt",wllh,2,2,2);
+// 			print3d("wlhl.txt",wlhl,2,2,2);
+// 			print3d("whll.txt",whll,2,2,2);
+// 			print3d("wlll.txt",wlll,2,2,2);
+	ifwt3d(ulll,ullh,ulhl,ulhh,uhll,uhlh,uhhl,uhhh,filter1.lor, filter0.lor, filter0.lor, filter1.hir, filter0.hir, filter0.hir,u, LLsize);
+	ifwt3d(vlll,vllh,vlhl,vlhh,vhll,vhlh,vhhl,vhhh,filter0.lor, filter1.lor, filter0.lor, filter0.hir, filter1.hir, filter0.hir,v, LLsize);
+	ifwt3d(wlll,wllh,wlhl,wlhh,whll,whlh,whhl,whhh,filter0.lor, filter0.lor, filter1.lor, filter0.hir, filter0.hir, filter1.hir,w, LLsize);
 	release3D(ulll,LLsize,LLsize);
 	release3D(ullh,LLsize,LLsize);
 	release3D(ulhl,LLsize,LLsize);
@@ -441,9 +532,9 @@ void DFdwt3D::ifwt3d(double*** lll, double*** llh, double*** lhl, double*** lhh,
 	conv_up3d(lhh, tmplhh, 2, hirz, LLsize, LLsize, LLsize);
 	addMatrix_3d(tmplhl, tmplhh, tmplhl, LLsize, LLsize, LLsize * 2);
 
-	conv_up3d(lll, tmphll, 2, lorz, LLsize, LLsize, LLsize);
-	conv_up3d(llh, tmphlh, 2, hirz, LLsize, LLsize, LLsize);
-	addMatrix_3d(tmphll, tmphlh, tmplll, LLsize, LLsize, LLsize * 2);
+	conv_up3d(hll, tmphll, 2, lorz, LLsize, LLsize, LLsize);
+	conv_up3d(hlh, tmphlh, 2, hirz, LLsize, LLsize, LLsize);
+	addMatrix_3d(tmphll, tmphlh, tmphll, LLsize, LLsize, LLsize * 2);
 
 	conv_up3d(hhl, tmphhl, 2, lorz, LLsize, LLsize, LLsize);
 	conv_up3d(hhh, tmphhh, 2, hirz, LLsize, LLsize, LLsize);
