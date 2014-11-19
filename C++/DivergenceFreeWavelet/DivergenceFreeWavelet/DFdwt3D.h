@@ -15,7 +15,7 @@ public:
 	vector<int>	waveletCoeSize;
 	vector<int> recWaveletCoeSize;
 	DFdwt3D(){
-		scene = BOUNDARY;
+		scene = LOOP;
 		waveletCoeDF1HHH.clear();
 		waveletCoeDF1HHL.clear();
 		waveletCoeDF1HLH.clear();

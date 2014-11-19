@@ -21,14 +21,15 @@ void DFdwt3D::loadData(string u_path, string v_path, string w_path, string filte
 	fclose(fp);
 	filter0.loadFilter(filter0_path);
 	filter1.loadFilter(filter1_path);
-	cout<<calcDivergence_sum(velocityField.u,velocityField.v,velocityField.w,DIM,DIM,DIM,scene)<<' '<<calcDivergence_biggest(velocityField.u,velocityField.v,velocityField.w,DIM,DIM,DIM,scene)<<endl;
+	cout << calcDivergence_sum(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM, BOUNDARY) << ' ' << calcDivergence_biggest(velocityField.u, velocityField.v, velocityField.w, DIM, DIM, DIM, BOUNDARY) << endl;
 }
 void DFdwt3D::wavedec3d(int level)
 {
-	double*** lastu, ***lastv,***lastw;
+	double*** lastu, ***lastv, ***lastw;
 	lastu = velocityField.u;
 	lastv = velocityField.v;
 	lastw = velocityField.w;
+	print3d("originu.txt", lastu, DIM, DIM, DIM);
 	int LLsize = DIM;
 	for (int i = 0; i<level; i++)
 	{
@@ -102,7 +103,8 @@ void DFdwt3D::waverec3d(int level)
 // 		print2d(string(name), nextv, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
 	}
 	//return ;
-	cout << calcDivergence_sum(lastu, lastv,lastw, DIM, DIM,DIM,scene) << ' ' << calcDivergence_biggest(lastu, lastv,lastw, DIM, DIM,DIM,scene) << endl;
+	cout << calcDivergence_sum(lastu, lastv, lastw, DIM, DIM, DIM, scene) << ' ' << calcDivergence_biggest(lastu, lastv, lastw, DIM, DIM, DIM, scene) << endl;
+	print3d("lastu.txt", lastu, DIM, DIM, DIM);
 	//print2d("..\\..\\..\\mathematica\\lastu.txt", lastu, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);
 	//set_field(lastu,lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2,1,0);
 	//print2d("..\\..\\..\\mathematica\\lastv.txt", lastv, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);

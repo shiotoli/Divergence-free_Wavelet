@@ -60,14 +60,28 @@ inline void reset3D(double*** tmp, int xn, int yn, int zn)
 	for (int k = 0; k < zn; k++)
 		tmp[i][j][k] = 0;
 }
-inline void print2d(string path,double** tmp,int row, int col)
+inline void print2d(string path, double** tmp, int row, int col)
 {
-	FILE* fp = fopen(path.c_str(),"w");
-	for (int i =0;i<row;i++)
+	FILE* fp = fopen(path.c_str(), "w");
+	for (int i = 0; i<row; i++)
 	{
-		for (int j = 0;j<col;j++)
-			fprintf(fp,"%lf ",tmp[i][j]);
-		fprintf(fp,"\n");
+		for (int j = 0; j<col; j++)
+			fprintf(fp, "%lf ", tmp[i][j]);
+		fprintf(fp, "\n");
+	}
+	fclose(fp);
+}
+inline void print3d(string path, double*** tmp, int nx,int ny, int nz)
+{
+	FILE* fp = fopen(path.c_str(), "w");
+	for (int i = 0; i<nx; i++)
+	{
+		for (int j = 0; j < ny; j++)
+		{
+			for (int k = 0; k < nz; k++)
+				fprintf(fp, "%lf ", tmp[i][j][k]);
+			fprintf(fp, "\n");
+		}
 	}
 	fclose(fp);
 }
