@@ -54,4 +54,5 @@ public:
 	void conv_down3d(double*** input, double*** &output, int dir, SubFilter filter, int input_xsize, int input_ysize,int input_zsize);
 	void conv_up3d(double*** input, double*** &output, int dir, SubFilter filter, int input_xsize, int input_ysize, int input_zsize);
 	void test();
+	void release();
 };

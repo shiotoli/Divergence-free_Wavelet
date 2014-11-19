@@ -129,13 +129,13 @@ void DFdwt3D::waverec3d(int level)
 	}
 	//return ;
 	cout << calcDivergence_sum(lastu, lastv, lastw, DIM, DIM, DIM, scene) << ' ' << calcDivergence_biggest(lastu, lastv, lastw, DIM, DIM, DIM, scene) << endl;
-	print3d("lastu.txt", lastu, DIM, DIM, DIM);
-	print3d("lastv.txt", lastv, DIM, DIM, DIM);
-	print3d("lastw.txt", lastw, DIM, DIM, DIM);
+	//print3d("lastu.txt", lastu, DIM, DIM, DIM);
+	//print3d("lastv.txt", lastv, DIM, DIM, DIM);
+	//print3d("lastw.txt", lastw, DIM, DIM, DIM);
 	//print2d("..\\..\\..\\mathematica\\lastu.txt", lastu, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);
 	//set_field(lastu,lastv,waveletCoeSize[0]*2,waveletCoeSize[0]*2,1,0);
 	//print2d("..\\..\\..\\mathematica\\lastv.txt", lastv, waveletCoeSize[0] * 2, waveletCoeSize[0] * 2);
-	system("pause");
+	//system("pause");
 
 	//print2d("realu.txt",waveletCoeULL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
 	//print2d("realv.txt",waveletCoeVLL[level-1],waveletCoeSize[level]*2,waveletCoeSize[level]*2);
@@ -149,11 +149,11 @@ void DFdwt3D::fwt3d_uvw(double*** u, double*** v, double *** w, int LLsize)
 	double*** vlll, *** vllh, *** vlhl, *** vlhh, *** vhll, *** vhlh, *** vhhl, *** vhhh;
 	double*** wlll, *** wllh, *** wlhl, *** wlhh, *** whll, *** whlh, *** whhl, *** whhh;
 	fwt3d(u, ullltmp, ullhtmp, ulhltmp, ulhhtmp, uhlltmp, uhlhtmp, uhhltmp, uhhhtmp, filter1.lod, filter0.lod, filter0.lod, filter1.hid, filter0.hid, filter0.hid, LLsize);
-	print3d("ulll.txt",ullltmp,LLsize/2,LLsize/2,LLsize/2);
+	//print3d("ulll.txt",ullltmp,LLsize/2,LLsize/2,LLsize/2);
 	fwt3d(v, vllltmp, vllhtmp, vlhltmp, vlhhtmp, vhlltmp, vhlhtmp, vhhltmp, vhhhtmp, filter0.lod, filter1.lod, filter0.lod, filter0.hid, filter1.hid, filter0.hid, LLsize);
-	print3d("vlll.txt",vllltmp,LLsize/2,LLsize/2,LLsize/2);
+	//print3d("vlll.txt",vllltmp,LLsize/2,LLsize/2,LLsize/2);
 	fwt3d(w, wllltmp, wllhtmp, wlhltmp, wlhhtmp, whlltmp, whlhtmp, whhltmp, whhhtmp, filter0.lod, filter0.lod, filter1.lod, filter0.hid, filter0.hid, filter1.hid, LLsize);
-	print3d("wlll.txt",wllltmp,LLsize/2,LLsize/2,LLsize/2);
+	//print3d("wlll.txt",wllltmp,LLsize/2,LLsize/2,LLsize/2);
 	new3D(ulll, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(ullh, LLsize / 2, LLsize / 2, LLsize / 2);
 	new3D(ulhl, LLsize / 2, LLsize / 2, LLsize / 2);
@@ -806,4 +806,73 @@ void DFdwt3D::conv_up3d(double*** input, double*** &output, int dir, SubFilter f
 		output = outtmp;
 
 	}
+}
+
+
+void DFdwt3D::release()
+{
+	for (int i = 0;i<waveletCoeDF1HHH.size();i++)
+	{
+		release3D(waveletCoeDF1HHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1HHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1HLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1HLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1LHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1LHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF1LLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2HHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2HHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2HLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2HLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2LHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2LHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeDF2LLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNHHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNHHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNHLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNHLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNLHH[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNLHL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeNLLH[i],waveletCoeSize[i],waveletCoeSize[i]);
+	}
+	for (int i = 0;i<waveletCoeULLL.size();i++)
+	{
+		release3D(waveletCoeULLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeVLLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+		release3D(waveletCoeWLLL[i],waveletCoeSize[i],waveletCoeSize[i]);
+
+	}
+	for (int i = 0;i<recWaveletCoeULLL.size();i++)
+	{
+		release3D(recWaveletCoeULLL[i],recWaveletCoeSize[i],recWaveletCoeSize[i]);
+		release3D(recWaveletCoeVLLL[i],recWaveletCoeSize[i],recWaveletCoeSize[i]);
+		release3D(recWaveletCoeWLLL[i],recWaveletCoeSize[i],recWaveletCoeSize[i]);
+	}
+	release3D(velocityField.u,DIM,DIM);
+	release3D(velocityField.v,DIM,DIM);
+	release3D(velocityField.w,DIM,DIM);
+	waveletCoeDF1HHH.clear();
+	waveletCoeDF1HHL.clear();
+	waveletCoeDF1HLH.clear();
+	waveletCoeDF1HLL.clear();
+	waveletCoeDF1LHH.clear();
+	waveletCoeDF1LHL.clear();
+	waveletCoeDF1LLH.clear();
+	waveletCoeDF2HHH.clear();
+	waveletCoeDF2HHL.clear();
+	waveletCoeDF2HLH.clear();
+	waveletCoeDF2HLL.clear();
+	waveletCoeDF2LHH.clear();
+	waveletCoeDF2LHL.clear();
+	waveletCoeDF2LLH.clear();
+	waveletCoeNHHH.clear();
+	waveletCoeNHHL.clear();
+	waveletCoeNHLH.clear();
+	waveletCoeNHLL.clear();
+	waveletCoeNLHH.clear();
+	waveletCoeNLHL.clear();
+	waveletCoeNLLH.clear();
+	waveletCoeULLL.clear();
+	waveletCoeVLLL.clear();
+	waveletCoeWLLL.clear();
 }
