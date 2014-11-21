@@ -47,7 +47,7 @@ public:
 	Filter filter0, filter1;
 	//void shift(double** input, int dir, int input_xsize, int input_ysize, int offset);
 	void fwt3d_uvw(double*** u, double*** v, double *** w,int LLsize);// double*** &ull, double*** &uhl, double*** &ulh, double*** &uhh, double*** &vll, double*** &vlh, double*** &vhl, double*** &vhh, int LLsize);
-	void ifwt3d_uvw(int level, double*** &u, double*** &v, double*** &w, int LLsize); //(double*** ull, double*** uhl, double*** ulh, double*** uhh, double*** vll, double*** vlh, double*** vhl, double*** vhh, double*** &u, double*** &v, int LLsize);
+	void ifwt3d_uvw(int level,double*** ull,double*** vll,double*** wll, double*** &u, double*** &v, double*** &w, int LLsize); //(double*** ull, double*** uhl, double*** ulh, double*** uhh, double*** vll, double*** vlh, double*** vhl, double*** vhh, double*** &u, double*** &v, int LLsize);
 	void fwt3d(double*** LLL, double*** &lll, double*** &llh, double*** &lhl, double*** &lhh, double*** &hll, double*** &hlh, double*** &hhl, double*** &hhh, SubFilter lodx, SubFilter lody, SubFilter lodz, SubFilter hidx, SubFilter hidy, SubFilter hidz, int LLsize);
 	void ifwt3d(double*** lll, double*** llh, double*** lhl, double*** lhh, double*** hll, double*** hlh, double*** hhl, double*** hhh, SubFilter lorx, SubFilter lory, SubFilter lorz, SubFilter hirx, SubFilter hiry, SubFilter hirz, double*** &LLL, int LLsize);
 	//void calc();

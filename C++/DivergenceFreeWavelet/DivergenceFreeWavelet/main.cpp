@@ -11,6 +11,7 @@ int main()
 	df_dwt3d.wavedec3d(5);
 	df_dwt3d.waverec3d(4);
 	df_dwt3d.release();
+	system("pause");
 	//df_dwt2d.loadData("uelocity.txt","velocity.txt","cdf22.txt","cdf31.txt");
 	//df_dwt2d.wavedec2d(7);
 	//df_dwt2d.waverec2d(6);

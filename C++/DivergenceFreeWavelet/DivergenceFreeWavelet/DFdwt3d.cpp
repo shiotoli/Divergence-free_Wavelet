@@ -29,7 +29,9 @@ void DFdwt3D::wavedec3d(int level)
 	lastu = velocityField.u;
 	lastv = velocityField.v;
 	lastw = velocityField.w;
-	print3d("originu.txt", lastu, DIM, DIM, DIM);
+	//print3d("originu.txt", lastu, DIM, DIM, DIM);
+	//print3d("originv.txt", lastv, DIM, DIM, DIM);
+	//print3d("originw.txt", lastw, DIM, DIM, DIM);
 	int LLsize = DIM;
 	for (int i = 0; i<level; i++)
 	{
@@ -39,9 +41,9 @@ void DFdwt3D::wavedec3d(int level)
 		LLsize /= 2;
 		lastu = waveletCoeULLL[i];
 		lastv = waveletCoeVLLL[i];
-		lastv = waveletCoeWLLL[i];
+		lastw = waveletCoeWLLL[i];
 		// 		char name[100];
-		set_field(waveletCoeDF1HHH[i], LLsize, LLsize,LLsize, 0.00);
+		/*set_field(waveletCoeDF1HHH[i], LLsize, LLsize,LLsize, 0.00);
 		set_field(waveletCoeDF1HHL[i], LLsize, LLsize,LLsize, 0.00);
 		set_field(waveletCoeDF1HLH[i], LLsize, LLsize,LLsize, 0.00);
 		set_field(waveletCoeDF1LHH[i], LLsize, LLsize,LLsize, 0.00);
@@ -64,7 +66,7 @@ void DFdwt3D::wavedec3d(int level)
 		set_field(waveletCoeNHLL[i], LLsize, LLsize,LLsize, 0.00);
 		set_field(waveletCoeULLL[i],LLsize,LLsize,LLsize,0.00);
 		set_field(waveletCoeVLLL[i],LLsize,LLsize,LLsize,0.00);
-		set_field(waveletCoeWLLL[i],LLsize,LLsize,LLsize,0.00);
+		set_field(waveletCoeWLLL[i],LLsize,LLsize,LLsize,0.00);*/
 // 		set_field(uhl, LLsize, LLsize, 0.00);
 // 		set_field(uhh, LLsize, LLsize, 0.00);
 // 		set_field(vlh, LLsize, LLsize, 0.00);
@@ -89,8 +91,8 @@ void DFdwt3D::wavedec3d(int level)
 // 		print2d(string(name), vhh, LLsize, LLsize);
 		if (i == level - 1)
 		{
-			set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize,1.00);
-			set_field(waveletCoeDF1HLL[i], LLsize, LLsize,LLsize,1.00);
+			//set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize,1.00);
+			//set_field(waveletCoeDF1HLL[i], LLsize, LLsize,LLsize,1.00);
 			//uhh[0][0] = vhh[0][0] = 1;;
 			//set_field(ull, vll, LLsize, LLsize,
 				//uhh[0][0] = 0.3;
@@ -113,7 +115,7 @@ void DFdwt3D::waverec3d(int level)
 	char name[100];
 	for (int i = level; i >= 0; i--)
 	{
-		ifwt3d_uvw(i,nextu,nextv,nextw,waveletCoeSize[i]);
+		ifwt3d_uvw(i,lastu,lastv,lastw,nextu,nextv,nextw,waveletCoeSize[i]);
 		//ifwt2d_uv(lastu, waveletCoeUHL[i], waveletCoeULH[i], waveletCoeUHH[i], lastv, waveletCoeVLH[i], waveletCoeVHL[i], waveletCoeVHH[i], nextu, nextv, waveletCoeSize[i]);
 		recWaveletCoeULLL.push_back(nextu);
 		recWaveletCoeVLLL.push_back(nextv);
@@ -122,10 +124,12 @@ void DFdwt3D::waverec3d(int level)
 		lastv = nextv;
 		lastw = nextw;
 		recWaveletCoeSize.push_back(waveletCoeSize[i] * 2);
-// 		sprintf(name, "nextu%04d.txt", i);
-// 		print2d(string(name), nextu, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
-// 		sprintf(name, "nextv%04d.txt", i);
-// 		print2d(string(name), nextv, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
+ 		//sprintf(name, "nextu%04d.txt", i);
+		//print3d(string(name), nextu, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
+		//sprintf(name, "nextv%04d.txt", i);
+		//print3d(string(name), nextv, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
+		//sprintf(name, "nextw%04d.txt", i);
+		//print3d(string(name), nextw, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2, waveletCoeSize[i] * 2);
 	}
 	//return ;
 	cout << calcDivergence_sum(lastu, lastv, lastw, DIM, DIM, DIM, scene) << ' ' << calcDivergence_biggest(lastu, lastv, lastw, DIM, DIM, DIM, scene) << endl;
@@ -324,13 +328,13 @@ void DFdwt3D::test()
 	conv_up3d(tmp,tt,2,filter0.lor,4,4,2);
 	conv_up3d(tmp1,tt1,2,filter0.hir,4,4,2);
 	addMatrix_3d(tt,tt1,tt,4,4,4);
-	print3d("tt.txt",tt,4,4,4);
+	//print3d("tt.txt",tt,4,4,4);
 }
-void DFdwt3D::ifwt3d_uvw(int level, double*** &u, double*** &v, double*** &w, int LLsize)
+void DFdwt3D::ifwt3d_uvw(int level,double*** ull,double*** vll,double*** wll, double*** &u, double*** &v, double*** &w, int LLsize)
 {
-	double*** ullltmp = waveletCoeULLL[level], *** ullhtmp=waveletCoeDF1LLH[level], *** ulhltmp=waveletCoeDF1LHL[level], *** ulhhtmp=waveletCoeDF1LHH[level], *** uhlltmp=waveletCoeDF1HLL[level], *** uhlhtmp=waveletCoeDF1HLH[level], *** uhhltmp=waveletCoeDF1HHL[level], *** uhhhtmp=waveletCoeDF1HHH[level];
-	double*** vllltmp = waveletCoeVLLL[level], *** vllhtmp=waveletCoeDF2LLH[level], *** vlhltmp=waveletCoeDF2LHL[level], *** vlhhtmp=waveletCoeDF2LHH[level], *** vhlltmp=waveletCoeDF2HLL[level], *** vhlhtmp=waveletCoeDF2HLH[level], *** vhhltmp=waveletCoeDF2HHL[level], *** vhhhtmp=waveletCoeDF2HHH[level];
-	double*** wllltmp = waveletCoeWLLL[level], *** wllhtmp=waveletCoeNLLH[level], *** wlhltmp=waveletCoeNLHL[level], *** wlhhtmp=waveletCoeNLHH[level], *** whlltmp=waveletCoeNHLL[level], *** whlhtmp=waveletCoeNHLH[level], *** whhltmp=waveletCoeNHHL[level], *** whhhtmp=waveletCoeNHHH[level];
+	double*** ullltmp = ull, *** ullhtmp=waveletCoeDF1LLH[level], *** ulhltmp=waveletCoeDF1LHL[level], *** ulhhtmp=waveletCoeDF1LHH[level], *** uhlltmp=waveletCoeDF1HLL[level], *** uhlhtmp=waveletCoeDF1HLH[level], *** uhhltmp=waveletCoeDF1HHL[level], *** uhhhtmp=waveletCoeDF1HHH[level];
+	double*** vllltmp = vll, *** vllhtmp=waveletCoeDF2LLH[level], *** vlhltmp=waveletCoeDF2LHL[level], *** vlhhtmp=waveletCoeDF2LHH[level], *** vhlltmp=waveletCoeDF2HLL[level], *** vhlhtmp=waveletCoeDF2HLH[level], *** vhhltmp=waveletCoeDF2HHL[level], *** vhhhtmp=waveletCoeDF2HHH[level];
+	double*** wllltmp = wll, *** wllhtmp=waveletCoeNLLH[level], *** wlhltmp=waveletCoeNLHL[level], *** wlhhtmp=waveletCoeNLHH[level], *** whlltmp=waveletCoeNHLL[level], *** whlhtmp=waveletCoeNHLH[level], *** whhltmp=waveletCoeNHHL[level], *** whhhtmp=waveletCoeNHHH[level];
 	double*** ulll, *** ullh, *** ulhl, *** ulhh, *** uhll, *** uhlh, *** uhhl, *** uhhh;
 	double*** vlll, *** vllh, *** vlhl, *** vlhh, *** vhll, *** vhlh, *** vhhl, *** vhhh;
 	double*** wlll, *** wllh, *** wlhl, *** wlhh, *** whll, *** whlh, *** whhl, *** whhh;

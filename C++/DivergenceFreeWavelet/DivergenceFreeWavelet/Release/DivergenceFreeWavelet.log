@@ -1,4 +1,4 @@
-﻿生成启动时间为 11/19/2014 9:05:57 PM。
+﻿生成启动时间为 11/21/2014 3:41:10 PM。
      1>项目“D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\DivergenceFreeWavelet\DivergenceFreeWavelet.vcxproj”在节点 2 上(build 个目标)。
        项目文件包含 ToolsVersion="12.0" 设置，但此工具集未知或缺失。您可以通过为此工具集安装相应的 .NET Framework 来解决此问题。将项目视为具有 ToolsVersion="4.0" 设置。
      1>InitializeBuildStatus:
@@ -22,11 +22,11 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : 参见“fopen”的声明
      1>DFdwt3d.cpp(20): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(253) : 参见“fscanf”的声明
-     1>DFdwt3d.cpp(113): warning C4101: “name”: 未引用的局部变量
-     1>DFdwt3d.cpp(525): warning C4101: “tmpl”: 未引用的局部变量
-     1>DFdwt3d.cpp(814): warning C4018: “<”: 有符号/无符号不匹配
-     1>DFdwt3d.cpp(838): warning C4018: “<”: 有符号/无符号不匹配
-     1>DFdwt3d.cpp(845): warning C4018: “<”: 有符号/无符号不匹配
+     1>DFdwt3d.cpp(115): warning C4101: “name”: 未引用的局部变量
+     1>DFdwt3d.cpp(529): warning C4101: “tmpl”: 未引用的局部变量
+     1>DFdwt3d.cpp(818): warning C4018: “<”: 有符号/无符号不匹配
+     1>DFdwt3d.cpp(842): warning C4018: “<”: 有符号/无符号不匹配
+     1>DFdwt3d.cpp(849): warning C4018: “<”: 有符号/无符号不匹配
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DivergenceFreeWavelet.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\YanXiao\Github\Divergence-free_Wavelet\C++\DivergenceFreeWavelet\Release\DivergenceFreeWavelet.lib" /MACHINE:X86 Release\BaseWavelet.obj
          Release\DFdwt2D.obj
@@ -45,4 +45,4 @@
 
 生成成功。
 
-已用时间 00:00:05.76
+已用时间 00:00:06.03
