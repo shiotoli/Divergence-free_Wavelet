@@ -1,5 +1,8 @@
 #pragma once
 #include "stdafx.h"
+#ifdef MEMLEAK
+#include "memleak.h"
+#endif
 class Vector2D
 {
 public:

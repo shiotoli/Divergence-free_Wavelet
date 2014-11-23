@@ -66,6 +66,7 @@
     <ClInclude Include="DFdwt2D.h" />
     <ClInclude Include="DFdwt3D.h" />
     <ClInclude Include="Filter.h" />
+    <ClInclude Include="memleak.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="DivergenceFreeWavelet2D.h" />
     <ClInclude Include="stdafx.h" />

@@ -1,5 +1,8 @@
 #include "DFdwt2D.h"
 
+#ifdef MEMLEAK
+#include "memleak.h"
+#endif
 void DFdwt2D::loadData(string u_path,string v_path,string filter0_path,string filter1_path)
 {
 	FILE* fp = fopen(u_path.c_str(),"r");
@@ -63,7 +66,7 @@ void DFdwt2D::wavedec2d(int level)
 			print2d(string(name),vhh,LLsize,LLsize);
 		if (i==level-1)
 		{
-			uhh[0][0] = vhh[0][0]=1;;
+		//	uhh[0][0] = vhh[0][0]=1;;
 			//set_field(ull,vll,LLsize,LLsize,1);
 			//uhh[0][0] = 0.3;
 			//vhh[0][0] = 0.0;

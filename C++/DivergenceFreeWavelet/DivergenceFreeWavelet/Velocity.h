@@ -1,5 +1,8 @@
 #pragma once
 #include "stdafx.h"
+#ifdef MEMLEAK
+#include "memleak.h"
+#endif
 class Velocity2D
 {
 public:
@@ -20,7 +23,7 @@ class Velocity3D
 {
 public:
 	Velocity3D()
-	{
+	{/*
 		u = new double**[DIM];
 		v = new double**[DIM];
 		w = new double**[DIM];
@@ -35,8 +38,11 @@ public:
 				v[i][j] = new double[DIM];
 				w[i][j] = new double[DIM];
 			}
-		}
+		}*/
 
+	}
+	~Velocity3D()
+	{
 	}
 	double ***u, ***v,***w;
 };

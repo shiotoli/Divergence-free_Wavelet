@@ -2,7 +2,9 @@
 #include "stdafx.h"
 #include "Filter.h"
 #include "Velocity.h"
-
+#ifdef MEMLEAK
+#include "memleak.h"
+#endif
 class DFdwt3D
 {
 public:

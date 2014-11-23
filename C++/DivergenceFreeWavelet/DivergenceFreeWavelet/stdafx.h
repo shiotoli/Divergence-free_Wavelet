@@ -9,6 +9,7 @@ using namespace std;
 #define DIM				128
 #define GRID_SIZE		512
 #define DUAL_CONVOLUTION
+//#define MEMLEAK
 enum SceneType
 {
 	LOOP,

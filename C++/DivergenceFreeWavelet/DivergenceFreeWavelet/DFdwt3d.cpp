@@ -1,6 +1,12 @@
 #include "DFdwt3D.h"
+#ifdef MEMLEAK
+	#include "memleak.h"
+#endif
 void DFdwt3D::loadData(string u_path, string v_path, string w_path, string filter0_path, string filter1_path)
 {
+	new3D(velocityField.u,DIM,DIM,DIM);
+	new3D(velocityField.v,DIM,DIM,DIM);
+	new3D(velocityField.w,DIM,DIM,DIM);
 	FILE* fp = fopen(u_path.c_str(), "r");
 	for (int i = 0; i<DIM; i++)
 	for (int j = 0; j<DIM; j++)
@@ -338,9 +344,9 @@ void DFdwt3D::ifwt3d_uvw(int level,double*** ull,double*** vll,double*** wll, do
 	double*** ulll, *** ullh, *** ulhl, *** ulhh, *** uhll, *** uhlh, *** uhhl, *** uhhh;
 	double*** vlll, *** vllh, *** vlhl, *** vlhh, *** vhll, *** vhlh, *** vhhl, *** vhhh;
 	double*** wlll, *** wllh, *** wlhl, *** wlhh, *** whll, *** whlh, *** whhl, *** whhh;
-	new3D(u, LLsize*2, LLsize*2, LLsize*2);
-	new3D(v, LLsize*2, LLsize*2, LLsize*2);
-	new3D(w, LLsize*2, LLsize*2, LLsize*2);
+//	new3D(u, LLsize*2, LLsize*2, LLsize*2);
+//	new3D(v, LLsize*2, LLsize*2, LLsize*2);
+//	new3D(w, LLsize*2, LLsize*2, LLsize*2);
 	new3D(ulll, LLsize, LLsize, LLsize);
 	new3D(ullh, LLsize, LLsize, LLsize);
 	new3D(ulhl, LLsize, LLsize, LLsize);
@@ -470,6 +476,7 @@ void DFdwt3D::ifwt3d_uvw(int level,double*** ull,double*** vll,double*** wll, do
 // 			print3d("wlhl.txt",wlhl,2,2,2);
 // 			print3d("whll.txt",whll,2,2,2);
 // 			print3d("wlll.txt",wlll,2,2,2);
+			
 	ifwt3d(ulll,ullh,ulhl,ulhh,uhll,uhlh,uhhl,uhhh,filter1.lor, filter0.lor, filter0.lor, filter1.hir, filter0.hir, filter0.hir,u, LLsize);
 	ifwt3d(vlll,vllh,vlhl,vlhh,vhll,vhlh,vhhl,vhhh,filter0.lor, filter1.lor, filter0.lor, filter0.hir, filter1.hir, filter0.hir,v, LLsize);
 	ifwt3d(wlll,wllh,wlhl,wlhh,whll,whlh,whhl,whhh,filter0.lor, filter0.lor, filter1.lor, filter0.hir, filter0.hir, filter1.hir,w, LLsize);
@@ -527,7 +534,7 @@ void DFdwt3D::ifwt3d(double*** lll, double*** llh, double*** lhl, double*** lhh,
 {
 	double*** tmplll, ***tmpllh, ***tmplhl, ***tmplhh, ***tmphll, ***tmphlh, ***tmphhl, ***tmphhh;
 	double*** tmpll, ***tmphl, ***tmplh, ***tmphh,***tmpl,***tmph;
-
+	
 	conv_up3d(lll, tmplll, 2, lorz, LLsize, LLsize, LLsize);
 	conv_up3d(llh, tmpllh, 2, hirz, LLsize, LLsize, LLsize);
 	addMatrix_3d(tmplll, tmpllh, tmplll, LLsize, LLsize, LLsize * 2);
@@ -555,7 +562,6 @@ void DFdwt3D::ifwt3d(double*** lll, double*** llh, double*** lhl, double*** lhh,
 	conv_up3d(tmpll, LLL, 0, lorx, LLsize, LLsize * 2, LLsize * 2);
 	conv_up3d(tmphl, tmph, 0, hirx, LLsize, LLsize * 2, LLsize * 2);
 	addMatrix_3d(LLL, tmph, LLL, LLsize*2, LLsize * 2, LLsize * 2);
-
 	release3D(tmph, LLsize * 2, LLsize * 2);
 	release3D(tmpll, LLsize, LLsize * 2);
 	release3D(tmphl, LLsize, LLsize * 2);
@@ -879,4 +885,7 @@ void DFdwt3D::release()
 	waveletCoeULLL.clear();
 	waveletCoeVLLL.clear();
 	waveletCoeWLLL.clear();
+	recWaveletCoeULLL.clear();
+	recWaveletCoeVLLL.clear();
+	recWaveletCoeWLLL.clear();
 }

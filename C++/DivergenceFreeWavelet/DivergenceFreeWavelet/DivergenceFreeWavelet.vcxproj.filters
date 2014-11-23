@@ -42,6 +42,9 @@
     <ClInclude Include="DFdwt3D.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="memleak.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseWavelet.cpp">
