@@ -77,6 +77,10 @@ namespace ConfigParse
 	{
 
 	}
+	ConfigParse::ConfigParse(string s)
+	{
+		parse(s);
+	}
 	template <typename TN>
 	bool ConfigParse::insert(vector<string> path,TN a,bool append)
 	{
