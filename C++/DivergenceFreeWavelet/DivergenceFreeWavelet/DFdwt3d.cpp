@@ -95,9 +95,53 @@ void DFdwt3D::wavedec3d(int level)
 // 		print2d(string(name), vlh, LLsize, LLsize);
 // 		sprintf(name, "vhh%04d.txt", i);
 // 		print2d(string(name), vhh, LLsize, LLsize);
-		if (i == level - 1)
+		string s = "Layer0";
+		s[5] ='0'+i;
+		s+='.';
+		double d = 0;
+		if (cp.getValue<double>(s+"HHH",d))
 		{
-			//set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize,1.00);
+			mul(waveletCoeDF1HHH[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2HHH[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"HHH "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"HHL",d))
+		{
+			mul(waveletCoeDF1HHL[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2HHL[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"HHL "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"HLH",d))
+		{
+			mul(waveletCoeDF1HLH[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2HLH[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"HLH "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"LHH",d))
+		{
+			mul(waveletCoeDF1LHH[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2LHH[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"LHH "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"HLL",d))
+		{
+			mul(waveletCoeDF1HLL[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2HLL[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"HLL "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"LHL",d))
+		{
+			mul(waveletCoeDF1LHL[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2LHL[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"LHL "<<d<<endl;
+		}
+		if (cp.getValue<double>(s+"LLH",d))
+		{
+			mul(waveletCoeDF1LLH[i],LLsize,LLsize,LLsize,d);
+			mul(waveletCoeDF2LLH[i],LLsize,LLsize,LLsize,d);
+			cout<<s+"LLH "<<d<<endl;
+		}
+		//set_field(waveletCoeDF2HLL[i], LLsize, LLsize,LLsize,1.00);
 			//set_field(waveletCoeDF1HLL[i], LLsize, LLsize,LLsize,1.00);
 			//uhh[0][0] = vhh[0][0] = 1;;
 			//set_field(ull, vll, LLsize, LLsize,
@@ -112,7 +156,6 @@ void DFdwt3D::wavedec3d(int level)
 				//set_field_rand(uhl,vhl,LLsize,LLsize);
 				//set_field(ulh,vlh,LLsize,LLsize,0.05,0.00);
 				//set_field(uhl,vhl,LLsize,LLsize,0.06,0.00);
-		}
 	}
 }
 void DFdwt3D::waverec3d(int level)

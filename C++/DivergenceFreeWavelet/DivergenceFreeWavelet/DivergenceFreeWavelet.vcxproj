@@ -63,6 +63,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BSplineWavelet1D.h" />
+    <ClInclude Include="ConfigParse.h" />
     <ClInclude Include="DFdwt2D.h" />
     <ClInclude Include="DFdwt3D.h" />
     <ClInclude Include="Filter.h" />

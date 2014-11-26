@@ -46,6 +46,10 @@ public:
 	void loadData(string u_path, string v_path,string w_path, string filter0_path, string filter1_path);
 	void wavedec3d(int level);
 	void waverec3d(int level);
+	void loadCfg(string path)
+	{
+		cp.parse(path);
+	}
 	Filter filter0, filter1;
 	//void shift(double** input, int dir, int input_xsize, int input_ysize, int offset);
 	void fwt3d_uvw(double*** u, double*** v, double *** w,int LLsize);// double*** &ull, double*** &uhl, double*** &ulh, double*** &uhh, double*** &vll, double*** &vlh, double*** &vhl, double*** &vhh, int LLsize);
@@ -57,4 +61,5 @@ public:
 	void conv_up3d(double*** input, double*** &output, int dir, SubFilter filter, int input_xsize, int input_ysize, int input_zsize);
 	void test();
 	void release();
+	ConfigParse::ConfigParse cp;
 };

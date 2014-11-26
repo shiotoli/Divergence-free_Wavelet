@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include "ConfigParse.h"
+//using namespace ConfigParse;
 using namespace std;
 #define DIM				128
 #define GRID_SIZE		512

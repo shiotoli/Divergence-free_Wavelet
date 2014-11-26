@@ -11,8 +11,9 @@ int main()
 	//df_dwt3d.test();
 	//return 1;
 	df_dwt3d.loadData("200_w.txt","200_v.txt","200_u.txt","cdf22.txt","cdf31.txt");
-	df_dwt3d.wavedec3d(1);
-	df_dwt3d.waverec3d(0);
+	df_dwt3d.loadCfg("config.txt");
+	df_dwt3d.wavedec3d(5);
+	df_dwt3d.waverec3d(4);
 	df_dwt3d.release();
 //	_CrtDumpMemoryLeaks();
 	system("pause");

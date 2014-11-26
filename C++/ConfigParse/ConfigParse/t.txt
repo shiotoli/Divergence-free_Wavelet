@@ -1,40 +1,10 @@
-Layer0:
-{
-	HHH = 1.0;
-	LHH = 1.0;
-	HLH = 1.0;
-	HHL = 1.0;
-	LLH = 1.0;
-	LHL = 1.0;
-	HLL = 1.0;
-}
 Layer1:
 {
-	HHH = 1.0;
-	LHH = True;
-	HLH = 1.0;
-	HHL = 1.0;
-	LLH = 1.0;
-	LHL = 1.0;
-	HLL = 1.0;
-}
-Layer2:
-{
-	HHH = 1.0;
-	LHH = 1.0f;
-	HLH = 1.0;
-	HHL = 1.0;
-	LLH = 1.0;
-	LHL = 1.0;
-	HLL = 1.0;
-}
-Layer3:
-{
-	HHH = 1.0;
-	LHH = 1.0;
-	HLH = 1;
-	HHL = 1.0;
-	LLH = 1.0;
-	LHL = 1.0;
-	HLL = 1.0;
+	HHH = 1.5;
+	LHH = 1.1;
+	HLH = 1.1;
+	HHL = 1.1;
+	LLH = 1.05;
+	LHL = 1.05;
+	HLL = 1.05;
 }
